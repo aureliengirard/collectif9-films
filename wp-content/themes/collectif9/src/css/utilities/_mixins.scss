@@ -1,0 +1,304 @@
+// main: ../main.scss
+
+// =============================================================================
+// String Replace
+// =============================================================================
+
+@function str-replace($string, $search, $replace: "") {
+	$index: str-index($string, $search);
+
+	@if $index {
+		@return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+	}
+
+	@return $string;
+}
+
+// =============================================================================
+// Font Face
+// =============================================================================
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+	$src: null;
+
+	$extmods: (
+		eot: "?",
+		svg: "#" + str-replace($name, " ", "_")
+	);
+
+	$formats: (
+		otf: "opentype",
+		ttf: "truetype"
+	);
+
+	@each $ext in $exts {
+		$extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+		$format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+		$src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+	}
+
+	@font-face {
+		font-family: quote($name);
+		font-style: $style;
+		font-weight: $weight;
+		src: $src;
+	}
+}
+
+// =============================================================================
+// Managing placeholders
+// =============================================================================
+
+@mixin placeholders ($color, $font-family, $text-transform, $font-weight, $font-size) {
+	&::-webkit-input-placeholder { /* Chrome */
+        color: $color !important;
+        font-weight: $font-weight !important;
+		font-size: $font-size !important;
+		font-family: $font-family !important;
+		text-transform: $text-transform !important;
+	}
+	&:-ms-input-placeholder { /* IE 10+ */
+		color: $color !important;
+        font-weight: $font-weight !important;
+        font-size: $font-size !important;
+		font-family: $font-family !important;
+		text-transform: $text-transform !important;
+	}
+	&::-moz-placeholder { /* Firefox 19+ */
+		color: $color !important;
+        font-weight: $font-weight !important;
+        font-size: $font-size !important;
+		font-family: $font-family !important;
+		text-transform: $text-transform !important;
+		opacity:1;
+	}
+	&:-moz-placeholder { /* Firefox 4 - 18 */
+		color: $color !important;
+        font-weight: $font-weight !important;
+        font-size: $font-size !important;
+		font-family: $font-family !important;
+		text-transform: $text-transform !important;
+		opacity:1;
+	}
+}
+
+// =============================================================================
+// Auto-color links
+// If important == true, we add !important at the end, else, we don't.
+// =============================================================================
+
+@mixin linx ($link, $visit, $hover, $active, $important) {
+	a:not(.btn):not(.tab-link) {
+		@if $important {
+			color: $link !important;
+			text-decoration: none !important;
+
+			&:visited {
+				color: $visit !important;
+			}
+
+			&:hover {
+				color: $hover !important;
+				text-decoration: none;
+			}
+
+			&:active {
+				color: $active !important;
+			}
+		} @else {
+			color: $link;
+			text-decoration: none;
+
+			&:not(.btn):visited {
+				color: $visit;
+			}
+
+			&:hover {
+				color: $hover;
+			}
+
+			&:active {
+				color: $active;
+			}
+		}
+	}
+}
+
+// =============================================================================
+// Small mixins useful for multi-browser support
+// =============================================================================
+
+@mixin before{
+	content:" ";
+	position:absolute;
+	visibility:visible;
+}
+
+@mixin placeholder {
+  &.placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &::-webkit-input-placeholder { @content; }
+}
+
+@mixin transition($transition){
+	-webkit-transition:$transition;
+	-moz-transition:$transition;
+	-o-transition:$transition;
+	transition:$transition;
+}
+
+@mixin calc($key, $value) {
+  #{$key}: -webkit-calc(#{$value});
+  #{$key}: -moz-calc(#{$value});
+  #{$key}: calc(#{$value});
+}
+
+// Flexbox
+@mixin flexbox {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+// Flexbox
+@mixin flexbox-important {
+  display: -webkit-box !important;
+  display: -moz-box !important;
+  display: -ms-flexbox !important;
+  display: -webkit-flex !important;
+  display: flex !important;
+}
+
+@mixin inline-flex {
+  display: -webkit-inline-flex;
+  display: inline-flex;
+}
+
+// Flexwrap
+@mixin flex-wrap($values) {
+  -webkit-flex-wrap: $values;
+  -moz-flex-wrap:  $values;
+  flex-wrap:  $values;
+}
+
+// Flex
+@mixin flex($values) {
+  -webkit-box-flex: $values;
+  -moz-box-flex:  $values;
+  -webkit-flex:  $values;
+  -ms-flex:  $values;
+  flex:  $values;
+}
+
+// Flex-flow
+@mixin flex-flow($values){
+    -webkit-flex-flow: $values; /* Safari 6.1+ */
+    flex-flow: $values;
+}
+
+// Flex direction column
+@mixin flex-direction-column {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+// Flex direction row
+@mixin flex-direction-row {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+// align-content
+@mixin align-content($values){
+    -webkit-align-content: $values;
+    align-content: $values;
+}
+
+// align-content
+@mixin justify-content($values){
+    -webkit-justify-content: $values;
+    justify-content: $values;
+	-ms-justify-content: $values;
+}
+
+// align-item
+@mixin align-items($values){
+    -webkit-align-items: $values;
+    align-items: $values;
+	-ms-flex-align: $values;
+}
+
+// align-self
+@mixin align-self($values){
+    -webkit-align-self: $values;
+    align-self: $values;
+}
+
+// justify-items
+@mixin justify-items($values){
+    -webkit-justify-items: $values;
+    justify-items: $values;
+}
+
+// Order
+@mixin order($val) {
+  -webkit-box-ordinal-group: $val;
+  -moz-box-ordinal-group: $val;
+  -ms-flex-order: $val;
+  -webkit-order: $val;
+  order: $val;
+}
+
+@mixin box-shadow($attributes){
+	-webkit-box-align: $attributes;
+    -webkit-align-items: $attributes;
+    -ms-flex-align: $attributes;
+    align-items: $attributes;
+}
+
+@mixin linear-gradient($from, $middle, $to) {
+	background: -moz-linear-gradient(90deg, $from 50%, $middle 50%, $to 100%);
+	background: -webkit-linear-gradient(90deg, $from 50%, $middle 50%, $to 100%);
+	background: -o-linear-gradient(90deg, $from 50%, $middle 50%, $to 100%);
+	background: linear-gradient(90deg, $from 50%, $middle 50%, $to 100%);
+}
+@mixin flex-width($width){
+	max-width: $width;
+	-webkit-flex: 0 0 $width;
+	-ms-flex: 0 0 $width;
+	flex: 0 0 $width;
+}
+
+@mixin filter($filter-type,$filter-amount) {
+  -webkit-filter: $filter-type+unquote('(#{$filter-amount})');
+  -moz-filter: $filter-type+unquote('(#{$filter-amount})');
+  -ms-filter: $filter-type+unquote('(#{$filter-amount})');
+  -o-filter: $filter-type+unquote('(#{$filter-amount})');
+  filter: $filter-type+unquote('(#{$filter-amount})');
+}
+
+@mixin overlay($color, $opacity){
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	opacity: $opacity;
+    background-color: $color;
+	@include transition(opacity .25s ease-in-out);
+}
+
+//TRANSFORM
+@mixin transform($value){
+	-webkit-transform: $value;
+	-ms-transform: $value;
+	transform: $value;
+}

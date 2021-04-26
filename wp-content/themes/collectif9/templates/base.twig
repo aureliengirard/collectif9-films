@@ -1,0 +1,49 @@
+{% block html_head_container %}
+
+{% include 'html-header.twig' %}
+{% block head %}
+{% endblock %}
+
+<link rel="stylesheet" href="{{ theme.link }}/dist/css/main.min.css">
+
+</head>
+{% endblock %}
+
+{% block extra_header_scripts %}
+{% endblock %}
+
+<body class="{{body_class}}" data-template="base.twig">
+
+{% include 'partial/gtm.twig' with { 'location': 'body' } %}
+
+	<div id="nav" class="fixed-top bg--white">
+      {% block navbar %}
+      {% include 'partial/navbar.twig' %}
+      {% endblock navbar %}
+    </div>
+
+    <main id="main-content" class="content-wrapper">
+      {% block content %}
+        Sorry, no content
+      {% endblock %}
+    </main>
+
+	<footer id="footer">
+        {% block footer %}
+            {% include 'partial/footer.twig' %}
+        {% endblock %}
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+		<script type="module" src="{{ theme.link }}/dist/js/main.js"></script>
+		<!-- <script nomodule src="{{ theme.link }}/src/vendors/slick/slick.min.js"></script> -->
+		<!-- <script nomodule src="{{ theme.link }}/src/js/ie.js"></script> -->
+
+		{{ function('wp_footer') }}
+
+		{% block extra_footer_scripts %}
+		{% endblock %}
+    </footer>
+
+</body>
+</html>

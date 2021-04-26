@@ -1,0 +1,36 @@
+// main: ../main.scss
+
+/*
+* STYLING FORMS AND INPUTS.
+* Since we are in partials scss, we can get specific and add fonts, colors, etc.
+*/
+
+.form-group {
+    label {
+        display: none;
+    }
+
+    input {
+
+        &[type="text"] {
+            // font-family: $mont;
+            font-size: $fs-basic+px;
+            padding: $padding * 0.6 $padding * 0.4 $padding * 0.6 $padding * 0.95;
+            // @include placeholders (black, $mont, none, 600, $fs-basic+px);
+            line-height: $padding * 0.4;
+            border: none;
+            position: relative;
+        }
+    }
+
+    &:before {
+        content: "";
+        height: $padding;
+        width: 3px;
+        background-color: black;
+        position: absolute;
+        left: 40px;
+        top: 15px;
+        z-index:2;
+    }
+}

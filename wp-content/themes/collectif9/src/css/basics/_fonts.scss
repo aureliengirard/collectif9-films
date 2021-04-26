@@ -1,0 +1,147 @@
+
+/*
+* FONTS, FONT-SIZE, SPACINGS
+*/
+
+/*
+* The Typekit service used to deliver this font or fonts for use on websites
+* is provided by Adobe and is subject to these Terms of Use
+* http://www.adobe.com/products/eulas/tou_typekit. For font license
+* information, see the list below.
+*
+* proxima-nova:
+*   - http://typekit.com/eulas/00000000000000003b9b306c
+*   - http://typekit.com/eulas/00000000000000003b9b306d
+*   - http://typekit.com/eulas/00000000000000003b9b3068
+*   - http://typekit.com/eulas/00000000000000003b9b3069
+*   - http://typekit.com/eulas/00000000000000003b9b306a
+*   - http://typekit.com/eulas/00000000000000003b9b306b
+*   - http://typekit.com/eulas/00000000000000003b9b305e
+*   - http://typekit.com/eulas/00000000000000003b9b305f
+*   - http://typekit.com/eulas/00000000000000003b9b3066
+*   - http://typekit.com/eulas/00000000000000003b9b3067
+*   - http://typekit.com/eulas/00000000000000003b9b3062
+*   - http://typekit.com/eulas/00000000000000003b9b3063
+*   - http://typekit.com/eulas/00000000000000003b9b3060
+*   - http://typekit.com/eulas/00000000000000003b9b3061
+*   - http://typekit.com/eulas/00000000000000003b9b3064
+*   - http://typekit.com/eulas/00000000000000003b9b3065
+* proxima-nova-condensed:
+*   - http://typekit.com/eulas/00000000000000003b9b307c
+*   - http://typekit.com/eulas/00000000000000003b9b307d
+*   - http://typekit.com/eulas/00000000000000003b9b3078
+*   - http://typekit.com/eulas/00000000000000003b9b3079
+*   - http://typekit.com/eulas/00000000000000003b9b3070
+*   - http://typekit.com/eulas/00000000000000003b9b3071
+*   - http://typekit.com/eulas/00000000000000003b9b3072
+*   - http://typekit.com/eulas/00000000000000003b9b3073
+*   - http://typekit.com/eulas/00000000000000003b9b3076
+*   - http://typekit.com/eulas/00000000000000003b9b3077
+*   - http://typekit.com/eulas/00000000000000003b9b306e
+*   - http://typekit.com/eulas/00000000000000003b9b306f
+*   - http://typekit.com/eulas/00000000000000003b9b307a
+*   - http://typekit.com/eulas/00000000000000003b9b307b
+*   - http://typekit.com/eulas/00000000000000003b9b3074
+*   - http://typekit.com/eulas/00000000000000003b9b3075
+*
+* © 2009-2019 Adobe Systems Incorporated. All Rights Reserved.
+*/
+/*{"last_published":"2019-07-10 19:13:18 UTC"}*/
+
+@import url("https://p.typekit.net/p.css?s=1&k=fzb1pir&ht=tk&f=137.138.139.140.169.170.171.172.173.174.175.176.5474.5475.25136.25137.141.142.143.144.145.146.147.148.149.150.151.152.153.154.25138.25139&a=11336446&app=typekit&e=css");
+
+@font-face {
+    font-family:"proxima-nova";
+    font-display: auto;
+    src:url("https://use.typekit.net/af/949f99/00000000000000003b9b3068/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2"),url("https://use.typekit.net/af/949f99/00000000000000003b9b3068/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff"),url("https://use.typekit.net/af/949f99/00000000000000003b9b3068/27a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("opentype");
+    font-style:normal;font-weight:700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family:"proxima-nova";
+    font-display: auto;
+    src:url("https://use.typekit.net/af/4c4052/00000000000000003b9b3069/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3") format("woff2"),url("https://use.typekit.net/af/4c4052/00000000000000003b9b3069/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3") format("woff"),url("https://use.typekit.net/af/4c4052/00000000000000003b9b3069/27a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3") format("opentype");
+    font-style:italic;font-weight:700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family:"proxima-nova";
+    font-display: auto;
+    src:url("https://use.typekit.net/af/576d53/00000000000000003b9b3066/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("woff2"),url("https://use.typekit.net/af/576d53/00000000000000003b9b3066/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("woff"),url("https://use.typekit.net/af/576d53/00000000000000003b9b3066/27a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("opentype");
+    font-style:normal;font-weight:600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family:"proxima-nova";
+    font-display: auto;
+    font-style:italic;font-weight:600;
+    src:url("https://use.typekit.net/af/f7d492/00000000000000003b9b3067/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i6&v=3") format("woff2"),url("https://use.typekit.net/af/f7d492/00000000000000003b9b3067/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i6&v=3") format("woff"),url("https://use.typekit.net/af/f7d492/00000000000000003b9b3067/27a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i6&v=3") format("opentype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family:"proxima-nova";
+    font-display: auto;
+    src:url("https://use.typekit.net/af/705e94/00000000000000003b9b3062/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"),url("https://use.typekit.net/af/705e94/00000000000000003b9b3062/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"),url("https://use.typekit.net/af/705e94/00000000000000003b9b3062/27a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
+    font-style:normal;font-weight:400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family:"proxima-nova";
+    font-display: auto;
+    src:url("https://use.typekit.net/af/5c70f2/00000000000000003b9b3063/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("woff2"),url("https://use.typekit.net/af/5c70f2/00000000000000003b9b3063/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("woff"),url("https://use.typekit.net/af/5c70f2/00000000000000003b9b3063/27a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3") format("opentype");
+    font-style:italic;font-weight:400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family:"proxima-nova";
+    font-display: auto;
+    src:url("https://use.typekit.net/af/cebe0e/00000000000000003b9b3060/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff2"),url("https://use.typekit.net/af/cebe0e/00000000000000003b9b3060/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff"),url("https://use.typekit.net/af/cebe0e/00000000000000003b9b3060/27a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("opentype");
+    font-display:auto;font-style:normal;font-weight:300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family:"proxima-nova";
+    font-display: auto;
+    src:url("https://use.typekit.net/af/40ff7f/00000000000000003b9b3061/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i3&v=3") format("woff2"),url("https://use.typekit.net/af/40ff7f/00000000000000003b9b3061/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i3&v=3") format("woff"),url("https://use.typekit.net/af/40ff7f/00000000000000003b9b3061/27a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i3&v=3") format("opentype");
+    font-display:auto;font-style:italic;font-weight:300;
+    font-display: swap;
+}
+
+
+/*
+*  Then we can just create the font name:
+*/
+$prox: "proxima-nova",sans-serif;
+$proxcond: "proxima-nova-condensed",sans-serif;
+$font : $prox;
+
+/*
+* Here is how to add font-sizes according to a basic font size. Notice that it has no 'px' after its number to allow for calculations below:
+*/
+
+$fs-basic: 20;
+$fs-basic-lg: 18;
+$fs-basic-mobile: 16;
+
+/*
+* And here are the calculations we talked about:
+* For example, h1 is 70px
+*/
+
+$fs-h1 : (60 / $fs-basic)*1rem;
+$fs-h2: (52 / $fs-basic)*1rem;
+$fs-h3 : (36 / $fs-basic)*1rem;
+$fs-h3-bis : (30 / $fs-basic)*1rem;
+$fs-h4 : (22 / $fs-basic)*1rem;
+$fs-small : (17 / $fs-basic)*1rem;
+$fs-base : (20 / $fs-basic)*1rem;
+
+$font-weight-normal : 400;
+$line-height-base : 28 / $fs-basic;

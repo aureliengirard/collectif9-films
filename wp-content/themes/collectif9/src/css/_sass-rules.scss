@@ -1,0 +1,50 @@
+// main: main.scss
+
+// MEDIA VARS
+$break-mobile-min:320px;
+$break-mobile-max:767px;
+$break-tablet-min:768px;
+$break-lg-min: 992px;
+$break-tablet-max:1024px;
+$break-1280-min:1025px;
+$break-1280-max:1280px;
+$break-1440-max:1440px;
+$break-1680-min:1441px;
+$break-1680-max:1680px;
+$break-1920-min:1681px;
+$break-1920-max:1920px;
+
+// 0 - 767px
+$mobile-down:"screen and (max-width :"$break-mobile-max")";
+// 320 - 768px
+$tablet-portrait-down:"screen and (min-width:"$break-mobile-min") and (max-width:"$break-tablet-min")";
+// 320 - 1024px
+$tablet-down:"screen and (min-width:"$break-mobile-min") and (max-width:"$break-tablet-max")";
+// 768 - 1024px, portrait only
+$tablet-portrait:"screen and (min-width:"$break-tablet-min") and(max-width :"$break-tablet-max") and (orientation: portrait)";
+// 768 - 1024px, landscape only
+$tablet-landscape:"screen and (min-width:"$break-tablet-min") and(max-width :"$break-tablet-max") and (orientation: landscape)";
+// 768 - 1024px, any orientation
+$tablet:"screen and (min-width:"$break-tablet-min") and(max-width :"$break-tablet-max")";
+// 768 - 1280px, hope we don't need it.
+$tablet-until-1280:"screen and (min-width: "$break-tablet-min") and (max-width:"$break-1280-max")";
+// 1025 - 1280px
+$screen-1280-break:"screen and (min-width:"$break-1280-min") and (max-width:"$break-1280-max")";
+// 1025 - 1440px
+$screen-until-1440:"screen and (max-width:"$break-1440-max")";
+// 1025 - 1680px
+$screen-1680:"screen and ("$break-1680-max")";
+// 1025 - 1920px
+$screen-1920:"screen and ("$break-1920-max")";
+// 1441 - 1680px, hope we don't need it.
+$screen-1680-break:"screen and (min-width:"$break-1680-min") and (max-width:"$break-1680-max")";
+// 1681 - 1920px
+$screen-1920-break:"screen and (min-width:"$break-1920-min") and (max-width:"$break-1920-max")";
+// 768+
+$mobile-up:"screen and (min-width: "$break-tablet-min")";
+// 992+, landscape only
+$tablet-landscape-up: "screen and (min-width: "$break-lg-min") and (orientation: landscape)";
+// 1025+
+$screen:"screen and (min-width:"$break-1280-min")";
+// 1440+
+$screen-1440-up: "screen and (min-width:"$break-1440-max")";

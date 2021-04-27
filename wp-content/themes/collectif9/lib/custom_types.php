@@ -27,3 +27,28 @@
 // 	'rewrite' => $rewrite,
 // );
 // register_post_type('service', $args);
+
+ //Services
+ $labels = array(
+ 	'name' => __('Films'),
+ 	'singular_name' => __('Film'),
+ 	'add_new_item' => __('Ajouter un film'),
+ 	'new_item' => __('Nouveau film'),
+ );
+ $rewrite = array(
+ 	'slug' => 'films',
+ 	'with_front' => true,
+ 	'pages' => true,
+ );
+ $args = array(
+ 	'labels' => $labels,
+ 	'public' => true,
+ 	'has_archive' => false,
+ 	'show_in_menu' => true,
+ 	'hierarchical' => false,
+ 	'menu_position' => 5,
+ 	'menu_icon' => 'dashicons-hammer',
+ 	'supports' => array('title', 'editor', 'thumbnail', ),
+ 	'rewrite' => $rewrite,
+ );
+ register_post_type('films', $args);

@@ -3,3 +3,5 @@ import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 /* Bootstrap */
 import 'bootstrap';
+import 'slick-carousel';
+//import 'magnific-popup';

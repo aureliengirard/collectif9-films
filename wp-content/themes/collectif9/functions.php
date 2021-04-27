@@ -17,7 +17,7 @@ Timber::$dirname = array('templates', 'views');
 class StarterSite extends TimberSite {
 
 	function __construct() {
-		add_theme_support( 'post-formats' );
+		add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link', 'gallery', 'audio', ));
 		add_theme_support( 'post-thumbnails' );
 		add_theme_support( 'menus' );
 		add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
@@ -33,8 +33,8 @@ class StarterSite extends TimberSite {
 	}
 
 	function register_taxonomies() {
-		require('lib/custom_taxonomies.php');
 		//this is where you can register custom taxonomies
+		//require('lib/custom_taxonomies.php');
 	}
 
 	function add_to_context( $context ) {

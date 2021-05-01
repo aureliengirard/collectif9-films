@@ -25,13 +25,10 @@
 		{% include 'partial/tracking.twig' with { 'location': 'body' } %}
 
 		{# Site Nav #}
-		<div id="nav" class="fixed-top bg--white">
 
-			{% block navbar %}
+		{% block navbar %}
 			{% include 'partial/navbar.twig' %}
-			{% endblock navbar %}
-
-	    </div>
+		{% endblock navbar %}
 
 		{# Site Main Content #}
 	    <main id="main-content" class="content-wrapper">
@@ -46,13 +43,19 @@
 	            {% include 'partial/footer.twig' %}
 	        {% endblock %}
 
-			<script type="text/javascript" src="{{ theme.link }}/dist/js/vendor.min.js"></script>
-			{{ function('wp_footer') }}
-			<script type="text/javascript" src="{{ theme.link }}/dist/js/main.min.js" defer></script>
-
-			{% block extra_footer_scripts %}
-			{% endblock %}
 	    </footer>
+
+		{% block styles %}
+
+		{% endblock %}
+
+
+		<script type="text/javascript" src="{{ theme.link }}/dist/js/vendor.min.js"></script>
+		{{ function('wp_footer') }}
+		<script type="text/javascript" src="{{ theme.link }}/dist/js/main.min.js" defer></script>
+		{% block scripts %}
+
+		{% endblock %}
 
 	</body>
 </html>

@@ -1,52 +1,58 @@
-<nav class="navbar navbar-expand-lg navbar-dark">
-  <div class="container">
-    <a class="navbar-brand" href="{{ site.url }}">
-        <!-- GET LOGO FROM OPTIONS PAGE -->
-      <img src="{{TimberImage(options.menu_logo).src }}" width="{{TimberImage(options.menu_logo).width }}" height="{{TimberImage(options.menu_logo).height }}" alt="{{TimberImage(options.menu_logo).alt }}">
-    </a>
-    <button class="navbar-toggler mr-xl-3" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-na">
-          <!-- CREATE MEGA MENU IF MENU ITEM HAS CHILDREN -->
-        {% for item in nav_menu.get_items %}
-            {% if item.children %}
-                <li class="nav-item {% if item.current %}active {% endif %}dropdown">
-                  <a class="nav-link {{ item.class }}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="">{{ item.title }}</span>
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <div class="container">
-                          <div class="row">
-                              {% for inner_item in item.children %}
-                                    {% if inner_item.children %}
-                                        <div class="col-sm-4 col-2-5">
-                                            <a href="{{ inner_item.link }}"><p class="parent subtitle">{{ inner_item.title }}</p></a>
-                                            {% for child in inner_item.children %}
-                                                <p class="child"><a href="{{ child.link }}">{{ child.title }}</a></p>
-                                            {% endfor %}
-                                        </div>
-                                    {% else %}
-                                        <div class="col-12 no-child">
-                                            <a href="{{ inner_item.link }}" class="">{{ inner_item.title }}</a>
-                                        </div>
-                                    {% endif %}
-                              {% endfor %}
-                          </div>
-                      </div>
-                  </div>
-                </li>
-            {% else %}
-            <!-- CREATE NORMAL MENU LINK IF ITEM DOESN'T HAVE CHILDREN -->
-                <li class="nav-item {% if item.current %}active{% endif %}">
-                  <a class="nav-link {{ item.class }}" href="{{ item.link }}">
-                    <span class="">{{ item.title }}</span>
-                  </a>
-                </li>
+<nav id="nav" class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ site.url }}">
+            <!-- GET LOGO FROM OPTIONS PAGE -->
+            {% if fn('is_front_page') %}
+                <h1>
             {% endif %}
-        {% endfor %}
-      </ul>
+                <img src="{{TimberImage(options.logo_alt).src| resize(0,115) }}" alt="{{site.title}}">
+            {% if fn('is_front_page') %}
+                </h1>
+            {% endif %}
+        </a>
+        <button class="navbar-toggler mr-xl-3" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" role="navigation" aria-label="Main">
+            <ul class="navbar-nav">
+                <!-- CREATE MEGA MENU IF MENU ITEM HAS CHILDREN -->
+                {% for item in nav_menu.get_items %}
+                {% if item.children %}
+                <li class="nav-item {% if item.current %}active {% endif %}dropdown">
+                    <a class="nav-link {{ item.class }}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="">{{ item.title }}</span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="container">
+                            <div class="row">
+                                {% for inner_item in item.children %}
+                                {% if inner_item.children %}
+                                <div class="col-sm-4 col-2-5">
+                                    <a href="{{ inner_item.link }}"><p class="parent subtitle">{{ inner_item.title }}</p></a>
+                                    {% for child in inner_item.children %}
+                                    <p class="child"><a href="{{ child.link }}">{{ child.title }}</a></p>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                <div class="col-12 no-child">
+                                    <a href="{{ inner_item.link }}" class="">{{ inner_item.title }}</a>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {% else %}
+                <!-- CREATE NORMAL MENU LINK IF ITEM DOESN'T HAVE CHILDREN -->
+                <li class="nav-item {% if item.current %}active{% endif %}">
+                    <a class="nav-link {{ item.class }}" href="{{ item.link }}">
+                        <span class="">{{ item.title }}</span>
+                    </a>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>

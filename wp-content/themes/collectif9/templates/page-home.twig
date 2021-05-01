@@ -1,0 +1,96 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
+
+		{% include 'layouts/hero-home.twig' %}
+
+		<section class="concept content__centered">
+			<div class="container">
+				<div class="row">
+					<div class="col-12 section__title">
+						<h2>{{page.concept_title}}</h2>
+					</div>
+					<div class="col-lg-6 rte">
+						{{ page.meta('concept_content') }}
+						<h4 class="text--right  alt">{{ page.concept_author }}</h4>
+					</div>
+					<div class="col-lg-6 concept__slider">
+						{% set concept_slides = page.meta('concept_caroussel') %}
+						{% for slide in concept_slides %}
+						<div class="slide__wrapper concept-slide__wrapper">
+							<div class="slide__image image__wrapper">
+								{% set image = Image(slide.image).src %}
+								<img class="lazyload movie__image"
+								data-srcset="{{ image | resize(400,240) | relative }} 400w,{{ image | resize(500,300) | relative }} 500w,{{ image | resize(600,360) | relative }} 600w,{{ image|resize(700,420) | relative }} 700w,{{ image|resize(850,510) | relative }} 850w"
+								data-sizes="auto"
+								alt="{{ slide.titre }}">
+							</div>
+							<div class="slide__title text--right">
+								<h3>{{ slide.titre }}</h3>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="film-concert">
+			<div class="container">
+				<div class="row film-concert__boxes">
+					<div class="col-12 section__title text--center">
+						<h2>{{page.universe_title}}</h2>
+					</div>
+					{% set movie_blocks = page.meta('movie_blocks') %}
+					{% for movie_block in movie_blocks %}
+					<div class="col-lg-6 movie__card">
+						<div class="movie__card--wrapper">
+							<div class="image__wrapper">
+								{% set image = Image(movie_block.image).src %}
+								<img class="lazyload movie__image"
+								data-srcset="{{ image | resize(400,240) | relative }} 400w,{{ image | resize(500,300) | relative }} 500w,{{ image | resize(600,360) | relative }} 600w,{{ image|resize(700,420) | relative }} 700w,{{ image|resize(850,510) | relative }} 850w"
+								data-sizes="auto"
+								alt="{{ movie_block.title }}">
+							</div>
+							<div class="overlay__wrapper">
+								<h3>{{movie_block.title}}</h3>
+								<a class="btn btn--blanc" href="{{movie_block.btn.url}}" target="{{movie_block.btn.target}}">{{movie_block.btn.title}}</a>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+		<section class="a-propos">
+			{%- set about_image = Image(page.about_image).src -%}
+			{%- set about_btn = page.about_btn -%}
+			{%- set about_stats = page.meta('stats') -%}
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 a-propos__img" style="background-image:url('{{ about_image }}');">
+						<a class="btn btn--blanc" href="{{ about_btn.url }}" target="{{ about_btn.target }}">{{ about_btn.title }}</a>
+					</div>
+					<div class="col-lg-6 a-propos__content bg--bleu color--blanc">
+						<blockquote>
+							<p>{{page.about_quote}}</p>
+						</blockquote>
+						<p class="quote__author">{{page.about_quote_author}}</p>
+						<div class="stats__wrapper">
+							{% for stat in about_stats %}
+								{%- set stat_image = Image(stat.icon).src -%}
+								<div class="single__stat">
+									<img src="{{stat_image}}" alt="{{stat.value}}">
+									<div class="stat">
+										<span>{{ stat.value|split(' ')|slice(0, 1)|join }}</span>
+										<span>{{ stat.value|split(' ')|slice(1)|join(' ') }}</span>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</article>
+{% endblock %}

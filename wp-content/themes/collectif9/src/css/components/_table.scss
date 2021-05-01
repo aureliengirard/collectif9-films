@@ -25,11 +25,11 @@ table {
         font-weight: 600;
         border-top: 2px solid #cacaca;
         td, th {
-            padding-top: $padding * 0.4;
-            padding-bottom: $padding * 0.4;
+            padding-top: $spacing * 0.4;
+            padding-bottom: $spacing * 0.4;
         }
         td {
-            line-height: $padding * 0.8;
+            line-height: $spacing * 0.8;
             letter-spacing: -0.8px;
         }
         tr {

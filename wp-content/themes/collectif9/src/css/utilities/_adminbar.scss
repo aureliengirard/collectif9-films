@@ -1,21 +1,9 @@
-.adminbar{
-}
-
-body.admin-bar #nav,
-body.admin-bar {
+body.admin-bar #nav {
   @include media-breakpoint-up(md){
-    margin-top:32px !important;
+    top:32px !important;
   }
 
   @include media-breakpoint-down(md) {
-    margin-top:46px !important;
+    top:46px !important;
   }
-  .admin-only{
-  }
-}
-
-body:not(.admin-bar){
-    .admin-only{
-        //display: none;
-    }
 }

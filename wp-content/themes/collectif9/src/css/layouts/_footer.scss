@@ -1,0 +1,52 @@
+footer{
+
+    section{
+        padding-top: $spacing/2;
+        padding-bottom: $spacing/2;
+        margin-bottom: 0;
+    }
+}
+
+.footer{
+
+    &__newsletter{}
+    &__partners{
+        background-color: var(--couleurBleuClair);
+    }
+    &__links{
+        background-color: var(--couleurNoir);
+    }
+
+
+    &__social{
+        $link-size: 12px;
+        @include flexbox;
+        @include align-items(end);
+        @include justify-content(end);
+
+        a{
+            height: $link-size * 3;
+            //width: $link-size * 3;
+            @include flexbox;
+
+            &:nth-child(n +2){
+                margin-left: $link-size * 3;
+            }
+
+            &:hover{
+
+                img{
+                    //filter: invert(60%) sepia(55%) saturate(451%) hue-rotate(58deg) brightness(98%) contrast(94%);
+                }
+            }
+        }
+
+        img{
+            width: auto;
+            margin: auto;
+            height: $link-size * 3;
+            //filter: invert(84%) sepia(6%) saturate(57%) hue-rotate(169deg) brightness(81%) contrast(82%);
+            //transition: $transition-base;
+        }
+    }
+}

@@ -30,10 +30,10 @@
 
  //Services
  $labels = array(
- 	'name' => __('Films'),
- 	'singular_name' => __('Film'),
- 	'add_new_item' => __('Ajouter un film'),
- 	'new_item' => __('Nouveau film'),
+ 	'name' => __('Films concerts'),
+ 	'singular_name' => __('Films concerts'),
+ 	'add_new_item' => __('Ajouter un film concert'),
+ 	'new_item' => __('Nouveau film concert'),
  );
  $rewrite = array(
  	'slug' => 'films',

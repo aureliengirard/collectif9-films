@@ -1,0 +1,48 @@
+<section class="footer__newsletter">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <h2>{{ options.newsletter_title }}</h2>
+                {% filter shortcodes %}
+                    [gravityform id="{{ options.newsletter_id }}" title="false" description="false" ajax="true" tabindex="20"]
+                {% endfilter %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="footer__partners">
+
+    {% set partners = options.footer_partners %}
+    {% for partner in partners %}
+        {% set logo = Image(partner.logo).src %}
+        <img class="lazyload movie__logo"
+        data-srcset="{{ logo | resize(400,240) | relative }} 400w,{{ logo | resize(500,300) | relative }} 500w,{{ logo | resize(600,360) | relative }} 600w,{{ logo|resize(700,420) | relative }} 700w,{{ logo|resize(850,510) | relative }} 850w"
+        data-sizes="auto"
+        alt="{{ slide.titre }}">
+    {% endfor %}
+</section>
+
+<section class="footer__links">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+            </div>
+            <div class="col-lg-6">
+                Copyright {{"now"|date('Y')}}
+            </div>
+            <div class="col-lg-3 footer__social">
+                <div class="social__wrapper">
+                    {% set networks = options.social_network %}
+                    {% for network in networks %}
+                        <a class="social--link" href="{{ network.link.url }}" title="{{ network.link.title }}" target="{{ network.link.target }}" rel="nofollow">
+                            <img class="lazyload" data-src="{{ TimberImage(network.icon) }}" alt="{{ network.link.title }}">
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

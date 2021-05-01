@@ -1,9 +1,79 @@
-// main: ../main.scss
+.hero{
+    color: var(--couleurBlanc);
+    margin-bottom: $spacing;
 
-/*
-* STYLING HEADERS IN GENERAL.
-* If you have a basic header added in some places, you put it here and any specific section will change it.
-* Since we are in partials scss, we can get specific and add fonts, colors, etc.
-*/
+    @include media-breakpoint-only(lg){
+        margin-bottom: $spacing * 1.5;
+    }
 
-.hero{}
+    @include media-breakpoint-up(xl){
+        margin-bottom: $spacing * 2;
+    }
+
+    .container-fluid{
+        height: 100%;
+        padding: 0;
+        background-size: cover;
+        background-position: 50%;
+    }
+
+    .row{
+        margin: auto;
+        height: 100%;
+        @include align-items(flex-end);
+        max-width: var(--WidthNavArea);
+        padding: $spacing $spacing/2;
+
+        @include media-breakpoint-up(md){
+            padding: $spacing * 2 $spacing;
+        }
+
+        @include media-breakpoint-up(xxxl){
+            padding: $spacing * 3 $spacing;
+        }
+    }
+
+    &__title{
+        padding-bottom: 1em;
+        margin-bottom: 1.25em;
+        position: relative;
+
+        &:after{
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 3px;
+            background-color: var(--couleurBlanc);
+            opacity: 0.9;
+        }
+    }
+
+
+    // Hero Variations
+    &__fullheight{
+        height: 100vh;
+
+        .container-fluid{
+            height: 100vh;
+        }
+    }
+
+    &__home{
+        .movie__image{
+            width: 100%;
+        }
+
+        .movie__trailer{
+            @include flexbox;
+            @include align-items(center);
+            flex-wrap: wrap;
+        }
+
+        #icon-play{
+            width: 60px;
+            margin-right: $spacing * .75;
+        }
+    }
+}

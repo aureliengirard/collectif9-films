@@ -6,7 +6,29 @@
 */
 
 .btn {
+    padding: $spacing/3 $spacing/2;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--couleurNoir);
+    border: 2px var(--couleurNoir) solid;
+    text-decoration: none;
+}
 
+.content-wrapper{
+    .btn{
+        margin-top: $spacing/2;
+
+        + .btn{
+            margin-left: $spacing/2;
+        }
+    }
+}
+
+.btn__wrapper{
+
+    .btn{
+        display: inline-block;
+    }
 }
 
 nav {
@@ -17,4 +39,24 @@ nav {
 
 .gform_button{
     //@extend .btn;
+}
+
+$btn-style:
+"blanc" var(--couleurBlanc),
+"or" var(--couleurOr),
+"vert" var(--couleurVert),
+"jaune" var(--couleurJaune),
+"bleu" var(--couleurBleu),
+"bleu-clair" var(--colorBleuClair);
+
+@each $btn-name, $color in $btn-style {
+
+    %btn__#{$btn-name} {
+        color: $color;
+        border-color: $color;
+    }
+
+    .btn--#{$btn-name}{
+        @extend %btn__#{$btn-name};
+    }
 }

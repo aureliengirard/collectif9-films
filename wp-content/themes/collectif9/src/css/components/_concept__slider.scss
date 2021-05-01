@@ -1,0 +1,16 @@
+.concept__slider{
+    .slide__wrapper{
+        position: relative;
+    }
+
+    .slide__title{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+
+    h3{
+        margin: $spacing/3;
+        color: var(--couleurBlanc);
+    }
+}

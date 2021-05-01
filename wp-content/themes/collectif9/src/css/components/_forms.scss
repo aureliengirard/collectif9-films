@@ -15,9 +15,9 @@
         &[type="text"] {
             // font-family: $mont;
             font-size: $fs-basic+px;
-            padding: $padding * 0.6 $padding * 0.4 $padding * 0.6 $padding * 0.95;
+            padding: $spacing * 0.6 $spacing * 0.4 $spacing * 0.6 $spacing * 0.95;
             // @include placeholders (black, $mont, none, 600, $fs-basic+px);
-            line-height: $padding * 0.4;
+            line-height: $spacing * 0.4;
             border: none;
             position: relative;
         }
@@ -25,7 +25,7 @@
 
     &:before {
         content: "";
-        height: $padding;
+        height: $spacing;
         width: 3px;
         background-color: black;
         position: absolute;

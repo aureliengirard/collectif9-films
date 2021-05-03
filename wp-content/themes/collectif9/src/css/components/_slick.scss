@@ -1,0 +1,26 @@
+.slick{
+    &-arrow{
+        position: absolute;
+        height: 38px;
+        width: 38px;
+        cursor: pointer;
+        z-index: 11;
+        top: 50%;
+
+
+        svg {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            height: 38px;
+            left: 0;
+        }
+    }
+
+    &--prev{
+        transform: rotate(180deg) translateY(50%);
+    }
+    &--next{
+        transform:  translateY(-50%);
+    }
+}

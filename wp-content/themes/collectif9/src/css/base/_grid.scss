@@ -18,28 +18,35 @@
     }
 }
 
+.content-wrapper{
+    section{
+        margin-bottom: $spacing;
 
-section{
-    margin-bottom: $spacing;
+        @include media-breakpoint-only(lg){
+            margin-bottom: $spacing * 1.5;
+        }
 
-    @include media-breakpoint-only(lg){
-        margin-bottom: $spacing * 1.5;
-    }
-
-    @include media-breakpoint-up(xl){
-        margin-bottom: $spacing * 2;
+        @include media-breakpoint-up(xl){
+            margin-bottom: $spacing * 2;
+        }
     }
     .row{
 
         @include media-breakpoint-up(lg){
             margin-bottom: $spacing * 1.5;
-            margin-left: -$spacing * .6;
-            margin-right: -$spacing * .6;
+        }
+    }
+}
 
-            [class^="col-"]{
-                padding-left: $spacing * .6;
-                padding-right: $spacing * .6;
-            }
+.row{
+
+    @include media-breakpoint-up(lg){
+        margin-left: -$spacing * .6;
+        margin-right: -$spacing * .6;
+
+        [class^="col-"]{
+            padding-left: $spacing * .6;
+            padding-right: $spacing * .6;
         }
     }
 }

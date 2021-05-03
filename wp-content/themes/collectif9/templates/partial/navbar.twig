@@ -1,4 +1,4 @@
-<nav id="nav" class="navbar navbar-expand-lg navbar-dark">
+<nav id="nav" class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ site.url }}">
             <!-- GET LOGO FROM OPTIONS PAGE -->
@@ -52,6 +52,11 @@
                 </li>
                 {% endif %}
                 {% endfor %}
+                <li class="nav-item nav-lang">
+                    {% filter shortcodes %}
+                    [wpml_language_selector_widget][/wpml_language_selector_widget]
+                    {% endfilter %}
+                </li>
             </ul>
         </div>
     </div>

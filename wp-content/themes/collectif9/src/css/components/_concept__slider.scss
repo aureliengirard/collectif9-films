@@ -13,4 +13,22 @@
         margin: $spacing/3;
         color: var(--couleurBlanc);
     }
+
+    .slick{
+        &-arrow{
+            top: 50%;
+
+            svg path{
+                fill: var(--couleurBlanc);
+            }
+        }
+        
+        &--prev{
+            left: $spacing/3;
+        }
+
+        &--next{
+            right: $spacing/3;
+        }
+    }
 }

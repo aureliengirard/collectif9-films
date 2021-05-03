@@ -3,6 +3,8 @@
 <header class="hero hero__fullheight hero__home hero__slider">
     {% for slide in film_slides %}
         {% set film = slide.movie %}
+        {% set id = film.slug|lower %}
+        {% set color = film.film_color %}
         {% set movie_bg -%}
         {%- if slide.movie_bg -%}
             {{- Image(slide.movie_bg).src -}}
@@ -11,8 +13,7 @@
         {%- endif %}
         {%- endset %}
 
-
-        <div class="container-fluid" style="background-image:url('{{ movie_bg }}');">
+        <div id="{{ id }}" class="container-fluid {{ id }}" style="background-image:url('{{ movie_bg }}');">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="hero__title image__wrapper">
@@ -22,21 +23,31 @@
                         data-sizes="auto"
                         alt="{{ film.title }}">
                     </div>
-                    <div class="movie__date">
+                    <div class="movie__date text--center">
                         <h3>{{ slide.movie_date }}</h3>
                     </div>
+                    {#
                     <div class="movie__band text--right">
                         <h3 class="h3--alt">{{site.title}}</h3>
                     </div>
-                    <div class="movie__trailer">
-                        {% include 'svg/icon-play.svg' %}<span>{{ __('Bande annonce', 'Header') }}</span>
+                    #}
+                    <div class="movie__trailer text--center">
+                        {% include 'svg/icon-play.svg' with {size: '60'} %}<span>{{ __('Bande annonce', 'Header') }}</span>
                     </div>
                 </div>
             </div>
         </div>
-
-        {% block styles %}
-
-        {% endblock %}
     {% endfor %}
 </header>
+
+{% block styles %}
+<style type="text/css" media="screen">
+{% for slide in film_slides %}
+    {% set film = slide.movie %}
+    {% set id = film.slug|lower %}
+    {% set color = film.film_color %}
+    .{{id}} svg path {fill:{{color}};}
+    .{{id}} .movie__trailer {color:{{color}};}
+{% endfor %}
+</style>
+{% endblock %}

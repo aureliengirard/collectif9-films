@@ -1,6 +1,32 @@
 
 // STYLING NAV IN GENERAL.
-nav {
+nav{
+}
+
+%nav-link {
+    display: block;
+    padding: $spacing/4 $spacing/2;
+    text-decoration: none;
+    transition: all .25s ease-in;
+    text-transform: uppercase;
+    font-weight: 700;
+
+    .is_sticky &{
+        font-size: 16px;
+    }
+
+    &:not(.btn){
+        color: var(--couleurBlanc);
+
+        .is_sticky &{
+            color: var(--couleurNoir);
+        }
+    }
+
+    &:hover,
+    &.active{
+        color: var(--couleurOr);
+    }
 }
 
 .navbar{
@@ -8,19 +34,113 @@ nav {
     top: 0;
     width: 100%;
     z-index: 101;
+    background-color: transparent;
+    transition: background-color .25s ease;
 
     .container-fluid{
         max-width: var(--WidthNavArea);
         padding: $spacing/2;
+        @include flexbox;
+        @include align-items(center);
+        @include justify-content(space-between);
 
         @include media-breakpoint-up(md){
-            padding: $spacing;
+            padding: $spacing/2 $spacing;
         }
     }
 
-    &-brand {
-        display: inline-block;
-        line-height: inherit;
-        white-space: nowrap;
+    &.is_sticky{
+        position: fixed;
+        background-color: rgba(255,255,255,.85);
+
+        .container-fluid{
+            @include media-breakpoint-up(md){
+                padding: $spacing/4 $spacing;
+            }
+        }
     }
 }
+
+.navbar-brand{
+    display: inline-block;
+    line-height: inherit;
+    white-space: nowrap;
+
+    img{
+        transition: all .25s ease;
+        height: 115px;
+
+        .is_sticky &{
+            height: 55px;
+            filter: invert(100%)
+        }
+    }
+}
+
+.navbar-nav{
+    @include flexbox;
+    @include align-items(center);
+    @include flex-direction(column);
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+
+    @include media-breakpoint-up(lg){
+        flex-direction: row;
+    }
+
+    .nav{
+        &-item{
+            padding: 0 $spacing/2;
+
+            &:nth-child(n+2){
+                border-width: 0 0 0 3px;
+                border-color: var(--couleurBlanc);
+                border-style: solid;
+            }
+        }
+
+
+        &-link{
+            @extend %nav-link;
+        }
+
+    }
+
+    .wpml-ls-legacy-list-horizontal{
+        padding: 0;
+        border: 0;
+    }
+
+    .wpml-ls-link{
+        @extend %nav-link;
+        margin-right: -$spacing;
+    }
+
+    .dropdown-menu{
+        position: absolute;
+        top: 100%;
+        z-index: 1000;
+        display: none;
+        min-width: 10rem;
+        padding: .5rem 0;
+        margin: 0;
+        font-size: 1rem;
+        color: #212529;
+        text-align: left;
+        list-style: none;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0,0,0,.15);
+        border-radius: .25rem;
+
+        @include media-breakpoint-up(lg){
+            position: absolute;
+        }
+
+        &.show{
+            display: block;
+        }
+    }
+}
+

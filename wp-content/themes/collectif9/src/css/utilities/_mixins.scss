@@ -181,17 +181,10 @@
 }
 
 // Flex direction column
-@mixin flex-direction-column {
-    -moz-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-}
-
-// Flex direction row
-@mixin flex-direction-row {
-    -moz-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
+@mixin flex-direction($values) {
+    -moz-flex-direction: $values;
+    -ms-flex-direction: $values;
+    flex-direction: $values;
 }
 
 // align-content

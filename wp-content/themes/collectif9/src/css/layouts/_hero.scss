@@ -25,11 +25,15 @@
         padding: $spacing $spacing/2;
 
         @include media-breakpoint-up(md){
-            padding: $spacing * 2 $spacing;
+            padding: $spacing * 2 ($spacing - 24px);
+        }
+
+        @include media-breakpoint-up(xl){
+            padding: $spacing * 2 ($spacing*2 - 24px);
         }
 
         @include media-breakpoint-up(xxxl){
-            padding: $spacing * 3 $spacing;
+            padding: $spacing * 3 ($spacing*3 - 24px);
         }
     }
 
@@ -68,12 +72,31 @@
         .movie__trailer{
             @include flexbox;
             @include align-items(center);
+            @include justify-content(center);
             flex-wrap: wrap;
         }
 
         #icon-play{
             width: 60px;
             margin-right: $spacing * .75;
+        }
+    }
+
+    .slick{
+        &-arrow{
+            top: 50%;
+
+            svg path{
+                fill: var(--couleurOr);
+            }
+        }
+
+        &--prev{
+            right: $spacing * 2.5;
+        }
+
+        &--next{
+            right: $spacing;
         }
     }
 }

@@ -1,0 +1,54 @@
+<header class="hero hero__fullheight hero__film">
+    {% set id = page.slug|lower %}
+    {% set color = page.film_color %}
+    {% set trailer = page.film_trailer_id %}
+    {% set movie_bg -%}
+    {%- if page.movie_bg -%}
+        {{- Image(page.movie_bg).src -}}
+    {%- else -%}
+        {{- Image(page.film_featured_img).src -}}
+    {%- endif %}
+    {%- endset %}
+
+    <div id="{{ id }}" class="hero__slide hero__{{ id }} hero__bg" style="background-image:url('{{ movie_bg }}');">
+        <div class="container">
+            <div class="row aos-init" data-aos="zoom-in">
+                <div class="col-lg-12 text--center">
+                        <a class="movie__trailer" href="{{trailer}}">
+                            {% include 'svg/icon-play.svg' with {size: "160", title: __('Bande annonce', 'Header')} %}
+                        </a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero__title image__wrapper">
+                        {% set image = Image(page.film_logo).src %}
+                        <img class="lazyload movie__image"
+                        data-srcset="{{ image | resize(300,0) | relative }} 300w,{{ image | resize(400,0) | relative }} 400w,{{ image | resize(500,0) | relative }} 500w,{{ image | resize(600,0) | relative }} 600w,{{ image|resize(700,0) | relative }} 700w"
+                        data-sizes="auto"
+                        alt="{{ page.title }}">
+                    </div>
+                </div>
+                <div class="col-lg-6 placeholder">
+                </div>
+                <div class="col-lg-6 text--center">
+                    <h1><span>{{page.title}} | </span>{{page.film_tag_line}}</h1>
+                </div>
+                <div class="col-lg-6 credit__musique">
+                    {% set credits_musique_list %}
+                        {% set credits_musique = page.credits_musique|split(',') %}
+                        {% for credit in credits_musique %}{% if loop.first %}{% elseif loop.last %} {{__('et', 'Credit Film')}} {% else %}, {% endif %}{{credit}}{% endfor %}
+                    {% endset %}
+                    <p>{{__('Musique de ', 'film-concerts')}} {{credits_musique_list}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block styles %}
+    <style type="text/css" media="screen">
+        {%- set id = page.slug|lower -%}
+        {%- set color = page.film_color -%}
+        .hero__{{id}} svg path {fill:{{color}};}
+        .hero__{{id}} .hero__title:after {background-color:{{color}};}
+    </style>
+    {% endblock %}
+</header>
+

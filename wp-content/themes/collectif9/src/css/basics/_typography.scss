@@ -1,13 +1,20 @@
 
 %heading-h1 {
-    font-size: 2.5em;
+    font-size: 2.125em;
     font-weight: 500;
+    line-height: 1;
+
+    @include media-breakpoint-up(xxxl){
+        font-size: 2.25em;
+    }
 }
 
 %heading-h2 {
     font-size: 2em;
     font-weight: 700;
 
+    @include media-breakpoint-up(xxxl){
+    }
 }
 
 %heading-h3 {
@@ -97,9 +104,14 @@
     }
 }
 
-a {
-    font-size: inherit;
+header a {
+    text-decoration: none;
     color: inherit;
+}
+
+section a {
+    font-size: inherit;
+    color: var(--couleurOr);
 
     @include hover-focus{
 

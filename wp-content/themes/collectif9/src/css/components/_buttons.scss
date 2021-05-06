@@ -28,6 +28,20 @@
         height: calc(100% + 6px);
     }
 
+    &.alt{
+        &::before, &::after{
+            height: 0;
+        }
+
+        &:hover,
+        &:focus{
+            &::before,
+            &::after{
+                height: calc(100% + 6px);
+            }
+        }
+    }
+
     &::before {
         left: 0;
         top: -3px;

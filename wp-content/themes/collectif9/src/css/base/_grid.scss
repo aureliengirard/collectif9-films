@@ -20,6 +20,7 @@
 
 .content-wrapper{
     section{
+        /*
         margin-bottom: $spacing;
 
         @include media-breakpoint-only(lg){
@@ -29,11 +30,12 @@
         @include media-breakpoint-up(xl){
             margin-bottom: $spacing * 2;
         }
+        */
     }
     .row{
 
         @include media-breakpoint-up(lg){
-            margin-bottom: $spacing * 1.5;
+            //margin-bottom: $spacing * 1.5;
         }
     }
 }
@@ -48,5 +50,59 @@
             padding-left: $spacing * .6;
             padding-right: $spacing * .6;
         }
+    }
+}
+
+.has_margin--bottom{
+    margin-bottom: $spacing;
+
+    @include media-breakpoint-only(lg){
+        margin-bottom: $spacing * 1.5;
+    }
+
+    @include media-breakpoint-up(xl){
+        margin-bottom: $spacing * 2;
+    }
+}
+
+.has_margins{
+    margin-top: $spacing;
+    margin-bottom: $spacing;
+
+    @include media-breakpoint-only(lg){
+        margin-top: $spacing * 1.5;
+        margin-bottom: $spacing * 1.5;
+    }
+
+    @include media-breakpoint-up(xl){
+        margin-top: $spacing * 2;
+        margin-bottom: $spacing * 2;
+    }
+}
+
+.has_padding--bottom{
+    padding-bottom: $spacing;
+
+    @include media-breakpoint-only(lg){
+        padding-bottom: $spacing * 1.5;
+    }
+
+    @include media-breakpoint-up(xl){
+        padding-bottom: $spacing * 2;
+    }
+}
+
+.has_paddings{
+    padding-top: $spacing;
+    padding-bottom: $spacing;
+
+    @include media-breakpoint-only(lg){
+        padding-top: $spacing * 1.5;
+        padding-bottom: $spacing * 1.5;
+    }
+
+    @include media-breakpoint-up(xl){
+        padding-top: $spacing * 2;
+        padding-bottom: $spacing * 2;
     }
 }

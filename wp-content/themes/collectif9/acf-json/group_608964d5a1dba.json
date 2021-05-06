@@ -19,6 +19,25 @@
             "endpoint": 0
         },
         {
+            "key": "field_6093cc52ad5c5",
+            "label": "Tag Line",
+            "name": "film_tag_line",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_6089673d74361",
             "label": "Logo du film concert",
             "name": "film_logo",
@@ -123,10 +142,10 @@
         },
         {
             "key": "field_6089676a74363",
-            "label": "Bande annonce (ID Vimeo)",
+            "label": "Bande annonce URL",
             "name": "film_trailer_id",
             "type": "text",
-            "instructions": "Ex: L'ID pour https:\/\/vimeo.com\/<strong>468673122<\/strong> serait <strong>468673122<\/strong>",
+            "instructions": "Accepte des vidéos YouTube ou Viméo, simplement inséré l'URL (ex. Vimeo : <strong>https:\/\/vimeo.com\/468673122<\/strong>)",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -135,10 +154,10 @@
                 "id": ""
             },
             "default_value": "",
-            "maxlength": "",
             "placeholder": "",
             "prepend": "",
-            "append": ""
+            "append": "",
+            "maxlength": ""
         },
         {
             "key": "field_60902d3368c25",
@@ -204,84 +223,8 @@
             "esc_html": 0
         },
         {
-            "key": "field_6090310668c28",
-            "label": "Réalisateur",
-            "name": "realisateur",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_6090311568c29",
-            "label": "Directeur Artistique",
-            "name": "directeur_artistique",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_6090312168c2a",
-            "label": "Performance de musique",
-            "name": "performance_de_musique",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_6090313a68c2b",
-            "label": "Performance de danse",
-            "name": "performance_de_danse",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
             "key": "field_6090318368c2f",
-            "label": "Crédits musique",
+            "label": "Musiciens",
             "name": "credits_musique",
             "type": "text",
             "instructions": "",
@@ -297,6 +240,81 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
+        },
+        {
+            "key": "field_6093e28be25af",
+            "label": "Crédits",
+            "name": "credits",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "",
+            "sub_fields": [
+                {
+                    "key": "field_6093e2a8e25b0",
+                    "label": "Titre",
+                    "name": "label",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_6093e2c4e25b1",
+                    "label": "Nom",
+                    "name": "name",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
+        },
+        {
+            "key": "field_6090321868c31",
+            "label": "Description",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
         },
         {
             "key": "field_6090316568c2c",
@@ -356,22 +374,6 @@
             "maxlength": ""
         },
         {
-            "key": "field_6090321868c31",
-            "label": "Description",
-            "name": "",
-            "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "placement": "top",
-            "endpoint": 0
-        },
-        {
             "key": "field_6090322d68c32",
             "label": "Description courte",
             "name": "description_courte",
@@ -426,6 +428,25 @@
             "endpoint": 0
         },
         {
+            "key": "field_6093ee595eefa",
+            "label": "Titre de section",
+            "name": "critique_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_6090325b68c35",
             "label": "Critiques \/ Citations",
             "name": "critiques__citations",
@@ -441,14 +462,14 @@
             "collapsed": "",
             "min": 0,
             "max": 0,
-            "layout": "table",
+            "layout": "row",
             "button_label": "Ajouter une critique \/ citation",
             "sub_fields": [
                 {
                     "key": "field_6090327c68c36",
                     "label": "Citation",
                     "name": "citation",
-                    "type": "textarea",
+                    "type": "wysiwyg",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -457,17 +478,17 @@
                         "class": "",
                         "id": ""
                     },
+                    "tabs": "all",
+                    "toolbar": "full",
+                    "media_upload": 1,
                     "default_value": "",
-                    "placeholder": "",
-                    "maxlength": "",
-                    "rows": "",
-                    "new_lines": ""
+                    "delay": 0
                 },
                 {
                     "key": "field_6090328768c37",
-                    "label": "Auteur",
+                    "label": "Auteur \/ Source",
                     "name": "auteur",
-                    "type": "textarea",
+                    "type": "text",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -477,10 +498,10 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "new_lines": "",
                     "maxlength": "",
                     "placeholder": "",
-                    "rows": ""
+                    "prepend": "",
+                    "append": ""
                 },
                 {
                     "key": "field_6090329868c38",
@@ -514,6 +535,25 @@
             },
             "placement": "top",
             "endpoint": 0
+        },
+        {
+            "key": "field_6093ee735eefb",
+            "label": "Titre de section",
+            "name": "collaborateurs_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         },
         {
             "key": "field_609032f168c3a",
@@ -615,6 +655,25 @@
             "endpoint": 0
         },
         {
+            "key": "field_6093ee915eefc",
+            "label": "Titre de presse",
+            "name": "presse_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_6090339368c3f",
             "label": "Kit de presse",
             "name": "kit_de_presse",
@@ -636,8 +695,8 @@
         {
             "key": "field_609033a768c40",
             "label": "Courriel relations de presses",
-            "name": "kit_de_presse_copie",
-            "type": "file",
+            "name": "email_presse",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -646,11 +705,30 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "array",
-            "library": "all",
-            "min_size": "",
-            "max_size": "",
-            "mime_types": ""
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_6093eea95eefd",
+            "label": "Titre Contact Pro",
+            "name": "pro_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         },
         {
             "key": "field_609033c168c41",
@@ -688,6 +766,145 @@
             "endpoint": 0
         },
         {
+            "key": "field_6093ef005eeff",
+            "label": "Titre de section",
+            "name": "diffusions_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_609422dadeb69",
+            "label": "Diffusions",
+            "name": "broadcast",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "row",
+            "button_label": "Ajouter une diffusion",
+            "sub_fields": [
+                {
+                    "key": "field_609422dadeb6b",
+                    "label": "Date",
+                    "name": "date",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_60942309deb6d",
+                    "label": "Nom du lieu",
+                    "name": "location",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_609422dadeb6c",
+                    "label": "Liens de la billeterie",
+                    "name": "lien",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
+                },
+                {
+                    "key": "field_60942340deb6e",
+                    "label": "Est-ce une diffusion à venir?",
+                    "name": "future",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 1,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_60942389deb6f",
+                    "label": "Résultat",
+                    "name": "result",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_60942340deb6e",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        },
+        {
             "key": "field_6090350468c44",
             "label": "Gallerie Photo",
             "name": "",
@@ -702,6 +919,25 @@
             },
             "placement": "top",
             "endpoint": 0
+        },
+        {
+            "key": "field_6093eee95eefe",
+            "label": "Titre de section",
+            "name": "gallerie_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         },
         {
             "key": "field_6090350e68c45",
@@ -725,9 +961,9 @@
             "min_width": "",
             "min_height": "",
             "min_size": "",
-            "max_width": "",
+            "max_width": 1920,
             "max_height": "",
-            "max_size": "",
+            "max_size": ".5",
             "mime_types": ""
         }
     ],
@@ -761,5 +997,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1620063531
+    "modified": 1620323634
 }

@@ -97,6 +97,10 @@ nav{
                 border-width: 0 0 0 3px;
                 border-color: var(--couleurBlanc);
                 border-style: solid;
+
+                .is_sticky &{
+                    border-color: var(--couleurNoir);
+                }
             }
         }
 

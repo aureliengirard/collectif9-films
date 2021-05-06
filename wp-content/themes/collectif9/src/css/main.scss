@@ -7,9 +7,6 @@
 
 // Here, you add parts not specific to any section or element of a page:
 
-// Vendors
-//@import '../vendors/slick/sample.scss';
-
 // Utilities
 @import 'utilities/_breakpoints.scss';
 @import 'utilities/_mixins.scss';
@@ -20,6 +17,7 @@
 // Vendors
 @import "../../node_modules/slick-carousel/slick/slick.css";
 @import "../../node_modules/magnific-popup/dist/magnific-popup.css";
+@import '../../node_modules/aos/dist/aos.css';
 
 // Basics
 @import 'basics/_fonts.scss';
@@ -39,10 +37,12 @@
 @import 'components/_table.scss';
 @import 'components/_concept__slider.scss';
 @import 'components/_slick.scss';
+@import 'components/_magnificPopup.scss';
 
 // Layout
 @import 'layouts/_footer.scss';
 @import 'layouts/_hero.scss';
 @import 'layouts/_nav.scss';
 @import 'layouts/_home-page.scss';
+@import 'layouts/_film-page.scss';
 //@import 'layout/_contact.scss';

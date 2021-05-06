@@ -5,9 +5,9 @@
 
 		{% include 'layouts/hero-home.twig' %}
 
-		<section class="concept content__centered">
+		<section class="concept content__centered has_margin--bottom">
 			<div class="container">
-				<div class="row">
+				<div class="row aos-init" data-aos="fade-up">
 					<div class="col-12 section__title">
 						<h2>{{page.concept_title}}</h2>
 					</div>
@@ -38,9 +38,9 @@
 				</div>
 			</div>
 		</section>
-		<section class="film-concert">
+		<section class="film-concert has_margin--bottom">
 			<div class="container">
-				<div class="row film-concert__boxes">
+				<div class="row film-concert__boxes aos-init" data-aos="fade-up">
 					<div class="col-12 section__title text--center">
 						<h2>{{page.universe_title}}</h2>
 					</div>
@@ -70,7 +70,7 @@
 			{%- set about_btn = page.about_btn -%}
 			{%- set about_stats = page.meta('stats') -%}
 			<div class="container">
-				<div class="row">
+				<div class="row aos-init" data-aos="fade-up">
 					<div class="col-lg-6 a-propos__img" style="background-image:url('{{ about_image }}');">
 						<a class="btn btn--blanc" href="{{ about_btn.url }}" target="{{ about_btn.target }}">{{ about_btn.title }}</a>
 					</div>
@@ -82,7 +82,7 @@
 						<div class="stats__wrapper">
 							{% for stat in about_stats %}
 								{%- set stat_image = Image(stat.icon).src -%}
-								<div class="single__stat">
+								<div class="single__stat aos-init" data-aos="flip-left">
 									<img src="{{stat_image}}" alt="{{stat.value}}">
 									<div class="stat">
 										<span>{{ stat.value|split(' ')|slice(0, 1)|join }}</span>

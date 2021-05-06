@@ -10,7 +10,7 @@ const sliderInit = function() {
         infinite: true,
         //rows: 0, // Fix vor v1.8.0-1
         slidesToScroll: 1,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 4000,
         nextArrow: arrow_next,
         prevArrow: arrow_prev,
@@ -19,6 +19,19 @@ const sliderInit = function() {
 
     var concept_slider = $('.concept__slider');
     concept_slider.slick({
+        arrows: true,
+        infinite: true,
+        //rows: 0, // Fix vor v1.8.0-1
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        nextArrow: arrow_next,
+        prevArrow: arrow_prev,
+        //mobileFirst: true,
+    });
+
+    var quote_slider = $('.quote__slider');
+    quote_slider.slick({
         arrows: true,
         infinite: true,
         //rows: 0, // Fix vor v1.8.0-1

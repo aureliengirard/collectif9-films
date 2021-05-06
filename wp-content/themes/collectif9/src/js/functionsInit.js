@@ -39,6 +39,69 @@ const functionsInit = function() {
     }
 
     window.addEventListener('scroll', throttle(onScroll, 25));
+
+    var trailer_popup = $('.movie__trailer');
+    trailer_popup.magnificPopup({
+        type: 'iframe',
+        mainClass: 'mfp-fade',
+        removalDelay: 160,
+        preloader: false,
+
+        fixedContentPos: false
+    });
+
+    // STICKY BANNER ON MOVIE PAGES
+    function sticktothebottom() {
+        var h = window.innerHeight;
+        var window_top = $(window).scrollTop();
+        var top = $('#stick_banner').offset().top;
+        var panel = $('#watch_banner');
+        var panelh = $('#watch_banner').height();
+        var bottom = $('#unstick_banner').offset().top;
+        $('#unstick_banner').height(panel.outerHeight());
+
+
+        if (window_top + h > top) {
+            if (window_top + h < bottom + panelh){
+                panel.addClass('stick');
+            }
+        }
+
+        if (window_top + h < top  ) {
+            panel.removeClass('stick');
+            panel.addClass('transition');
+        }
+
+        if (window_top + h > bottom + panelh) {
+            $('#unstick_banner').height(0);
+            if (panel.hasClass('stick')) {
+                panel.removeClass('transition stick');
+            }
+        }
+    }
+    $(function() {
+        $(window).scroll(sticktothebottom);
+        sticktothebottom();
+    });
+
+    $('.gallery__wrapper').magnificPopup({
+    delegate: 'a',
+    type: 'image',
+    tLoading: 'Loading image #%curr%...',
+    mainClass: 'mfp-img-mobile',
+    gallery: {
+        enabled: true,
+        navigateByImgClick: true,
+        preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+    },
+    image: {
+        tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+        titleSrc: function(item) {
+            return item.el.attr('title');
+        }
+    }
+});
+
 };
 
 export default functionsInit;

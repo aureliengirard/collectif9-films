@@ -7,4 +7,4 @@ $context = Timber::get_context();
 $post = Timber::query_post();
 $context['page'] = $post;
 
-Timber::render('single-products.twig', $context);
+Timber::render('page-film.twig', $context);

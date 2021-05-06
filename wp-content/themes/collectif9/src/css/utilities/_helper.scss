@@ -32,14 +32,26 @@
     @extend %row-y-centered;
 }
 
+.col_has-padding{
+    @extend %row-y-centered;
+}
+
+.divider{
+    display: block;
+    height: 3px;
+    background-color: var(--couleurNoir);
+    width: 75%;
+    margin: 1.5em 12.5%;
+}
 
 $bg-style:
 "blanc" var(--couleurBlanc),
+"noir" var(--couleurNoir),
 "or" var(--couleurOr),
 "vert" var(--couleurVert),
 "jaune" var(--couleurJaune),
 "bleu" var(--couleurBleu),
-"bleu-clair" var(--colorBleuClair);
+"bleu-clair" var(--couleurBleuClair);
 
 @each $bg-name, $color in $bg-style {
 
@@ -54,7 +66,7 @@ $text-color:
 "vert" var(--couleurVert),
 "jaune" var(--couleurJaune),
 "bleu" var(--couleurBleu),
-"bleu-clair" var(--colorBleuClair);
+"bleu-clair" var(--couleurBleuClair);
 
 @each $color-name, $color in $text-color {
 

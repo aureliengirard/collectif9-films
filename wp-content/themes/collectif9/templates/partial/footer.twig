@@ -1,6 +1,6 @@
-<section class="footer__newsletter">
+<section class="footer__newsletter has_margins">
     <div class="container content-wrapper">
-        <div class="row">
+        <div class="row aos-init" data-aos="fade-up">
             <div class="col-lg-12 text--center">
                 <h2>{{ options.newsletter_title }}</h2>
                 {% filter shortcodes %}
@@ -13,7 +13,7 @@
 
 <section class="footer__partners">
     <div class="container">
-        <div class="row">
+        <div class="row aos-init" data-aos="fade-up">
             <div class="col-12 partners__wrapper">
                 {% set partners = options.footer_partners %}
                 {% for partner in partners %}

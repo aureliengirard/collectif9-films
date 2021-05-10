@@ -5,7 +5,10 @@
 
 	{% include 'layouts/hero-film.twig' %}
 
-	<div  id="stick_banner"></div>
+	{%- if page.film_ppv_system or page.film_ppv_festival -%}
+		<div  id="stick_banner"></div>
+	{% endif %}
+
 	<section class="film-info content__centered">
 		<div class="container">
 			<div class="row aos-init" data-aos="fade-up">
@@ -32,126 +35,149 @@
 	</section>
 
 	{%- set quotes = page.meta('critiques__citations') -%}
-	<section class="quote has_margins">
-		<div class="container">
-			<div class="row film-concert__boxes aos-init" data-aos="fade-up">
-				{% if page.critique_title %}
+	{% if quotes %}
+		<section class="quote has_margins">
+			<div class="container">
+				<div class="row film-concert__boxes aos-init" data-aos="fade-up">
+					{% if page.critique_title %}
 					<div class="col-12 section__title text--center">
 						<h2>{{page.critique_title}}</h2>
 					</div>
-				{% endif %}
-				<div class="col-12 quote__slider">
-					{% for quote in quotes %}
-					<div class="quote__wrapper text--center">
-						<blockquote {% if quote.lien %}cite="{{quote.lien.url}}"{% endif %}>
-							{{ quote.meta('citation') }}
-							{{ quote.citation }}
-						</blockquote>
-						{%- if quote.lien %}<a href="{{quote.lien.url}}" target="_blank">{% endif -%}
-						<h4>{{quote.auteur}}</h4>
-						{%- if quote.lien %}</a>{% endif -%}
+					{% endif %}
+					<div class="col-12 quote__slider">
+						{% for quote in quotes %}
+						<div class="quote__wrapper text--center">
+							<blockquote {% if quote.lien %}cite="{{quote.lien.url}}"{% endif %}>
+								{{ quote.meta('citation') }}
+								{{ quote.citation }}
+							</blockquote>
+							{%- if quote.lien %}<a href="{{quote.lien.url}}" target="_blank">{% endif -%}
+								<h4>{{quote.auteur}}</h4>
+								{%- if quote.lien %}</a>{% endif -%}
+							</div>
+							{% endfor %}
+						</div>
 					</div>
-					{% endfor %}
 				</div>
-			</div>
-		</div>
-	</section>
+			</section>
+	{% endif %}
 
-	{%- set images = page.meta('gallerie') -%}
-	<section class="gallery bg--bleu-clair has_paddings aos-init" data-aos="fade-up">
-		<div class="container">
-			<div class="row">
-				{% if page.gallerie_title %}
+	{%- set images_gallerie = page.meta('gallerie') -%}
+	{% if images_gallerie %}
+		<section class="gallery bg--bleu-clair has_paddings aos-init" data-aos="fade-up">
+			<div class="container">
+				<div class="row">
+					{% if page.gallerie_title %}
 					<div class="col-12 section__title text--center">
 						<h2>{{page.gallerie_title}}</h2>
 					</div>
-				{% endif %}
-				<div class="col-lg-12 gallery__wrapper">
-					{% for image in images %}
+					{% endif %}
+					<div class="col-lg-12 gallery__wrapper">
+						{% for image in images_gallerie %}
 						{%- set image_url = image.url -%}
 						{%- set gallery_item -%}
-							<img class="lazyload"
-							data-srcset="{{ image_url | resize(150,100) | relative }} 150w,{{ image_url | resize(300,200) | relative }} 500w,{{ image_url | resize(600,400) | relative }} 600w,{{ image_url|resize(750,500) | relative }} 750w,{{ image_url|resize(900,600) | relative }} 900w"
-							data-sizes="auto"
-							alt="{{ image.title }}">
+						<img class="lazyload"
+						data-srcset="{{ image_url | resize(150,100) | relative }} 150w,{{ image_url | resize(300,200) | relative }} 500w,{{ image_url | resize(600,400) | relative }} 600w,{{ image_url|resize(750,500) | relative }} 750w,{{ image_url|resize(900,600) | relative }} 900w"
+						data-sizes="auto"
+						alt="{{ image.title }}">
 						{% endset %}
 						<a class="gallery__item" href="{{ image_url | resize(1500) }}" title="The Cleaner">{{gallery_item}}</a>
-					{% endfor %}
+						{% endfor %}
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
+	{% endif %}
 
 	{%- set broadcasts = page.meta('broadcast') -%}
-	<section  style="overflow:hidden;">
-		<div class="container">
-			<div class="row aos-init" data-aos="fade-up">
-				<div class="col-lg-5 has_paddings broadcast__wrapper">
-					<h2 class="section__title">{{page.diffusions_title}}</h2>
+	{%- set collaborateurs = page.meta('collaborateurs') -%}
+	{% if broadcasts or collaborateurs %}
+		<section  style="overflow:hidden;">
+			<div class="container">
+				<div class="row aos-init" data-aos="fade-up">
+					{% if broadcasts %}
+						<div class="{% if collaborateurs %}col-lg-5{% else %}col-lg-12{% endif %} has_paddings broadcast__wrapper">
+							<h2 class="section__title">{{page.diffusions_title}}</h2>
 
 
-					{% set future_broadcast = false %}
-					{% set past_broadcast = false %}
-					{% for broadcast in broadcasts %}
-					    {% if broadcast.future == true %}
-							{% set future_broadcast = true %}
-						{% endif %}
-					    {% if broadcast.future == false %}
-							{% set past_broadcast = true %}
-						{% endif %}
-					{% endfor %}
-
-					{% if future_broadcast == true %}
-						<h3>{{__('Diffusions à venir', 'film-concerts')}}</h3>
-						{% for broadcast in broadcasts %}
+							{% set future_broadcast = false %}
+							{% set past_broadcast = false %}
+							{% for broadcast in broadcasts %}
 							{% if broadcast.future == true %}
-								<div class="broadcast__item">
-									<div class="broadcast__location"><span>{{broadcast.location}}</span> | <span>{{broadcast.date}}</span></div>
-									{% if broadcast.lien %}<div class="broadcast__link"><a href="{{broadcast.lien.url}}">{{broadcast.lien.title}}</a></div>{% endif %}
-								</div>
+							{% set future_broadcast = true %}
 							{% endif %}
-						{% endfor %}
-					{% endif %}
-					{% if past_broadcast == true %}
-						<h3>{{__('Diffusions passées', 'film-concerts')}}</h3>
-						{% for broadcast in broadcasts %}
+							{% if broadcast.future == false %}
+							{% set past_broadcast = true %}
+							{% endif %}
+							{% endfor %}
+
+							{% if future_broadcast == true %}
+							<h3>{{__('Diffusions à venir', 'film-concerts')}}</h3>
+							{% for broadcast in broadcasts %}
+							{% if broadcast.future == true %}
+							<div class="broadcast__item">
+								<div class="broadcast__location"><span>{{broadcast.location}}</span> | <span>{{broadcast.date}}</span></div>
+								{% if broadcast.lien %}<div class="broadcast__link"><a href="{{broadcast.lien.url}}">{{broadcast.lien.title}}</a></div>{% endif %}
+							</div>
+							{% endif %}
+							{% endfor %}
+							{% endif %}
+							{% if past_broadcast == true %}
+							<h3>{{__('Diffusions passées', 'film-concerts')}}</h3>
+							{% for broadcast in broadcasts %}
 							{% if broadcast.future == false %}
 							<div class="broadcast__location"><span>{{broadcast.location}}</span> | <span>{{broadcast.date}}</span></div>
 							{% if broadcast.result %}<div class="broadcast__result"><span>{{broadcast.result}}</span> </div>{% endif %}
 							{% endif %}
-						{% endfor %}
-					{% endif %}
+							{% endfor %}
+							{% endif %}
 
-				</div>
-				<div class="col-lg-7 collaborators has_paddings bg--or color--blanc">
-					<h2 class="section__title">{{page.collaborateurs_title}}</h2>
-					{%- set collaborateurs = page.meta('collaborateurs') -%}
-					{% for collaborateur in collaborateurs %}
-					    <div class="collaborator__wrapper">
-					    	<div class="collaborator__img">
+						</div>
+					{% endif %}
+					{% if collaborateurs %}
+					<div class="{% if broadcasts %}col-lg-7{% else %}col-lg-12{% endif %} collaborators has_paddings bg--or color--blanc">
+						<h2 class="section__title">{{page.collaborateurs_title}}</h2>
+						{% for collaborateur in collaborateurs %}
+						<div class="collaborator__wrapper">
+							<div class="collaborator__img">
 								{% set image_url = Image(collaborateur.photo).src %}
 								<img class="lazyload"
 								data-srcset="{{ image_url | resize(50,50) | relative }} 50w,{{ image_url | resize(75,75) | relative }} 75w,{{ image_url | resize(100,100) | relative }} 100w,{{ image_url|resize(150,150) | relative }} 150w,{{ image_url|resize(300,300) | relative }} 300w"
 								data-sizes="auto"
 								alt="{{collaborateur.nom}}">
-					    	</div>
-					    	<div class="collaborator__info">
-					    		<h4>{{collaborateur.nom}}</h4>
-					    		<p>{{collaborateur.description}}</p>
-					    	</div>
-					    </div>
-					{% endfor %}
+							</div>
+							<div class="collaborator__info">
+								<h4>{{collaborateur.nom}}</h4>
+								<p>{{collaborateur.description}}</p>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+					{% endif %}
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
+	{% endif %}
 
 	<section style="overflow:hidden;">
 		<div class="container">
 			<div class="row aos-init" data-aos="fade-up">
-				<div class="col-lg-5 has_paddings cross_sale bg--bleu-clair">
+				<div class="col-lg-5 has_paddings you-may-like bg--bleu-clair">
 					<h3>{{__('Vous aimeriez aussi...', 'film-concerts')}}</h3>
+					<div class="you-may-like__wrapper you-may-like__slider">
+						{% for concert in film_concerts %}
+								{% set image_url = Image(concert.film_cross_selling).src %}
+								<a href="{{concert.link}}">
+									<img class="lazyload"
+									data-srcset="{{ image_url | resize(200,0) | relative }} 200w,{{ image_url | resize(275,0) | relative }} 275w,{{ image_url | resize(350,0) | relative }} 350w,{{ image_url|resize(425,0) | relative }} 425w,{{ image_url|resize(500,0) | relative }} 500w"
+									data-sizes="auto"
+									alt="{{concert.title}}">
+								</a>
+								{% if concert.title != page.title %}
+							{% endif %}
 
+						{% endfor %}
+					</div>
 				</div>
 				<div class="col-lg-7 has_paddings press-contact">
 					<h3 class="section__title">{{page.presse_title}}</h3>
@@ -167,12 +193,12 @@
 		</div>
 	</section>
 
-	<div id="unstick_banner"></div>
-	<section id="watch_banner" class="watch bg--noir transition">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					{%- if page.film_ppv_system or page.film_ppv_festival -%}
+	{%- if page.film_ppv_system or page.film_ppv_festival -%}
+		<div id="unstick_banner"></div>
+		<section id="watch_banner" class="watch bg--noir transition">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
 						{%- if page.film_ppv_festival %}
 							{% set ppv = page.film_ppv_festival %}
 						{%- else -%}
@@ -181,10 +207,10 @@
 						<div class="btn__wrapper">
 							<a class="btn btn--blanc alt" href="#">{{ppv.title}}</a>
 						</div>
-					{%- endif -%}
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
+	{%- endif -%}
 </article>
 {% endblock %}

@@ -52,32 +52,35 @@ const functionsInit = function() {
 
     // STICKY BANNER ON MOVIE PAGES
     function sticktothebottom() {
-        var h = window.innerHeight;
-        var window_top = $(window).scrollTop();
-        var top = $('#stick_banner').offset().top;
         var panel = $('#watch_banner');
-        var panelh = $('#watch_banner').height();
-        var bottom = $('#unstick_banner').offset().top;
-        $('#unstick_banner').height(panel.outerHeight());
 
+        if (panel) {
+            var h = window.innerHeight;
+            var window_top = $(window).scrollTop();
+            var top = $('#stick_banner').offset().top;
+            var panelh = $('#watch_banner').height();
+            var bottom = $('#unstick_banner').offset().top;
+            $('#unstick_banner').height(panel.outerHeight());
 
-        if (window_top + h > top) {
-            if (window_top + h < bottom + panelh){
-                panel.addClass('stick');
+            if (window_top + h > top) {
+                if (window_top + h < bottom + panelh){
+                    panel.addClass('stick');
+                }
+            }
+
+            if (window_top + h < top  ) {
+                panel.removeClass('stick');
+                panel.addClass('transition');
+            }
+
+            if (window_top + h > bottom + panelh) {
+                $('#unstick_banner').height(0);
+                if (panel.hasClass('stick')) {
+                    panel.removeClass('transition stick');
+                }
             }
         }
 
-        if (window_top + h < top  ) {
-            panel.removeClass('stick');
-            panel.addClass('transition');
-        }
-
-        if (window_top + h > bottom + panelh) {
-            $('#unstick_banner').height(0);
-            if (panel.hasClass('stick')) {
-                panel.removeClass('transition stick');
-            }
-        }
     }
     $(function() {
         $(window).scroll(sticktothebottom);

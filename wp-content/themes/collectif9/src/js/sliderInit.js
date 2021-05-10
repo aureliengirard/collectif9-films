@@ -10,7 +10,7 @@ const sliderInit = function() {
         infinite: true,
         //rows: 0, // Fix vor v1.8.0-1
         slidesToScroll: 1,
-        autoplay: false,
+        autoplay: true,
         autoplaySpeed: 4000,
         nextArrow: arrow_next,
         prevArrow: arrow_prev,
@@ -40,6 +40,17 @@ const sliderInit = function() {
         autoplaySpeed: 3000,
         nextArrow: arrow_next,
         prevArrow: arrow_prev,
+        //mobileFirst: true,
+    });
+
+    var you_may_like_slider = $('.you-may-like__slider');
+    you_may_like_slider.slick({
+        arrows: false,
+        infinite: true,
+        //rows: 0, // Fix vor v1.8.0-1
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
         //mobileFirst: true,
     });
 };

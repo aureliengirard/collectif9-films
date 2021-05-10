@@ -105,7 +105,7 @@
     }
 }
 
-.cross_sale{
+.you-may-like{
     position: relative;
 
     &:before{
@@ -117,6 +117,14 @@
         top: 0;
         left: -49%;
         z-index: -1;
+    }
+
+    &__wrapper{
+        max-width: 350px
+    }
+
+    img{
+        width: 100%;
     }
 }
 
@@ -199,6 +207,10 @@
         opacity: 0;
         transition-property: opacity,transform;
         transform: translate3d(0,100px,0);
+
+        .btn{
+            transition-property: margin-top,margin-bottom;
+        }
     }
 
     &.stick {
@@ -212,6 +224,14 @@
         transition-duration: .15s;
         transition-timing-function: ease-in-out;
         background-color: rgba(17,11,13,0.75);
+
+        .btn{
+            margin-top: 12.5px;
+            margin-bottom: 12.5px;
+            text-align: center;
+            line-height: 1;
+            padding: $spacing*.25 $spacing;
+        }
     }
 
     .btn__wrapper{
@@ -219,8 +239,8 @@
     }
 
     .btn{
-        margin-top: 12.5px;
-        margin-bottom: 12.5px;
+        margin-top: 20px;
+        margin-bottom: 20px;
         text-align: center;
         line-height: 1;
         padding: $spacing*.25 $spacing;

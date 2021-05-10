@@ -125,6 +125,22 @@
 				</div>
 				<div class="col-lg-7 collaborators has_paddings bg--or color--blanc">
 					<h2 class="section__title">{{page.collaborateurs_title}}</h2>
+					{%- set collaborateurs = page.meta('collaborateurs') -%}
+					{% for collaborateur in collaborateurs %}
+					    <div class="collaborator__wrapper">
+					    	<div class="collaborator__img">
+								{% set image_url = Image(collaborateur.photo).src %}
+								<img class="lazyload"
+								data-srcset="{{ image_url | resize(50,50) | relative }} 50w,{{ image_url | resize(75,75) | relative }} 75w,{{ image_url | resize(100,100) | relative }} 100w,{{ image_url|resize(150,150) | relative }} 150w,{{ image_url|resize(300,300) | relative }} 300w"
+								data-sizes="auto"
+								alt="{{collaborateur.nom}}">
+					    	</div>
+					    	<div class="collaborator__info">
+					    		<h4>{{collaborateur.nom}}</h4>
+					    		<p>{{collaborateur.description}}</p>
+					    	</div>
+					    </div>
+					{% endfor %}
 				</div>
 			</div>
 		</div>
@@ -134,6 +150,7 @@
 		<div class="container">
 			<div class="row aos-init" data-aos="fade-up">
 				<div class="col-lg-5 has_paddings cross_sale bg--bleu-clair">
+					<h3>{{__('Vous aimeriez aussi...', 'film-concerts')}}</h3>
 
 				</div>
 				<div class="col-lg-7 has_paddings press-contact">

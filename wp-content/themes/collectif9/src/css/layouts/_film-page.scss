@@ -138,6 +138,41 @@
     }
 }
 
+.collaborator{
+    &__wrapper{
+        @include flexbox;
+        @include flex-flow(row wrap);
+        @include align-items(center);
+
+        &:nth-of-type(n+2){
+            margin-top: $spacing/2;
+
+            @include media-breakpoint-up(xl){
+                margin-top: $spacing;
+            }
+        }
+    }
+
+    &__img{
+        flex: 100px;
+        max-width: 100px;
+
+        img{
+            border-radius: 50%;
+        }
+    }
+
+    &__info{
+        flex: auto;
+        max-width: 400px;
+        margin-left: $spacing / 2;
+
+        p{
+            margin: $spacing/4 0 0 0;
+        }
+    }
+}
+
 .press-contact{
     h3{
         &:nth-of-type(2n){
@@ -184,11 +219,11 @@
     }
 
     .btn{
-        margin-top: 15px;
-        margin-bottom: 15px;
+        margin-top: 12.5px;
+        margin-bottom: 12.5px;
         text-align: center;
         line-height: 1;
-        padding: $spacing*.25 $spacing*.75;
+        padding: $spacing*.25 $spacing;
     }
 }
 

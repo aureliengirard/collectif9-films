@@ -37,7 +37,9 @@
                         {% set credits_musique = page.credits_musique|split(',') %}
                         {% for credit in credits_musique %}{% if loop.first %}{% elseif loop.last %} {{__('et', 'Credit Film')}} {% else %}, {% endif %}{{credit}}{% endfor %}
                     {% endset %}
-                    <p>{{__('Musique de ', 'film-concerts')}} {{credits_musique_list}}</p>
+                    {% if page.credits_musique %}
+                        <p>{{__('Musique de ', 'film-concerts')}} {{credits_musique_list}}</p>
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -44,6 +44,14 @@ wp-content/plugins/**
 !wp-content/plugins/gravityforms/
 !wp-content/plugins/gravityforms/**
 
+# WPML
+!wp-content/plugins/sitepress-multilingual-cms/
+!wp-content/plugins/sitepress-multilingual-cms/**
+
+# WPML Media Translation
+!wp-content/plugins/wpml-media-translation/
+!wp-content/plugins/wpml-media-translation/**
+
 # Other dependencies
 !.eslintrc
 

@@ -52,6 +52,10 @@ wp-content/plugins/**
 !wp-content/plugins/wpml-media-translation/
 !wp-content/plugins/wpml-media-translation/**
 
+# SVG Support
+!wp-content/plugins/svg-support/
+!wp-content/plugins/svg-support/**
+
 # Other dependencies
 !.eslintrc
 

@@ -76,6 +76,13 @@ abstract class GFFeedAddOn extends GFAddOn {
 	private static $_frontend_feeds = array();
 
 	/**
+	 * @since 2.4.23
+	 *
+	 * @var array Tables where table error has been rendered.
+	 */
+	private $_table_error_rendered = array();
+
+	/**
 	 * Plugin starting point. Handles hooks and loading of language files.
 	 */
 	public function init() {
@@ -85,9 +92,10 @@ abstract class GFFeedAddOn extends GFAddOn {
 		add_filter( 'gform_entry_post_save', array( $this, 'maybe_process_feed' ), 10, 2 );
 		add_action( 'gform_after_delete_form', array( $this, 'delete_feeds' ) );
 
-		// Register GFFrontendFeeds
-		if( $this->_supports_frontend_feeds && ! has_action( 'gform_register_init_scripts', array( __class__, 'register_frontend_feeds_init_script' ) ) ) {
-			add_action( 'gform_register_init_scripts', array( __class__, 'register_frontend_feeds_init_script' ) );
+		// Register GFFrontendFeeds.
+		if ( $this->_supports_frontend_feeds && ! has_action( 'gform_register_init_scripts', array( __class__, 'register_frontend_feeds_init_script' ) ) ) {
+			// Use priority 20 so other add-ons that support frontend feeds can all load their scripts first.
+			add_action( 'gform_register_init_scripts', array( __class__, 'register_frontend_feeds_init_script' ), 20 );
 		}
 
 	}
@@ -599,6 +607,11 @@ abstract class GFFeedAddOn extends GFAddOn {
 	public function get_feeds( $form_id = null ) {
 		global $wpdb;
 
+		if ( ! $this->addon_feed_table_exists() ) {
+			$this->show_table_not_exists_error( $wpdb->prefix . 'gf_addon_feed' );
+			return array();
+		}
+
 		$form_filter = is_numeric( $form_id ) ? $wpdb->prepare( 'AND form_id=%d', absint( $form_id ) ) : '';
 
 		$sql = $wpdb->prepare(
@@ -644,6 +657,11 @@ abstract class GFFeedAddOn extends GFAddOn {
 	public function get_feeds_by_slug( $slug, $form_id = null ) {
 		global $wpdb;
 
+		if ( ! $this->addon_feed_table_exists() ) {
+			$this->show_table_not_exists_error( $wpdb->prefix . 'gf_addon_feed' );
+			return array();
+		}
+
 		$form_filter = is_numeric( $form_id ) ? $wpdb->prepare( 'AND form_id=%d', absint( $form_id ) ) : '';
 
 		$sql = $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}gf_addon_feed
@@ -675,6 +693,11 @@ abstract class GFFeedAddOn extends GFAddOn {
 
 	public function get_feed( $id ) {
 		global $wpdb;
+
+		if ( ! $this->addon_feed_table_exists() ) {
+			$this->show_table_not_exists_error( $wpdb->prefix . 'gf_addon_feed' );
+			return false;
+		}
 
 		$sql = $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}gf_addon_feed WHERE id=%d", $id );
 
@@ -736,7 +759,7 @@ abstract class GFFeedAddOn extends GFAddOn {
 
 			$feed = $this->_single_submission_feed;
 
-		} elseif ( $entry['id'] ) {
+		} elseif ( ! empty( $entry['id'] ) ) {
 
 			$feeds = $this->get_feeds_by_entry( $entry['id'] );
 
@@ -897,6 +920,11 @@ abstract class GFFeedAddOn extends GFAddOn {
 	public function insert_feed( $form_id, $is_active, $meta ) {
 		global $wpdb;
 
+		if ( ! $this->addon_feed_table_exists() ) {
+			$this->show_table_not_exists_error( $wpdb->prefix . 'gf_addon_feed' );
+			return false;
+		}
+
 		$meta = json_encode( $meta );
 		$wpdb->insert( "{$wpdb->prefix}gf_addon_feed", array( 'addon_slug' => $this->_slug, 'form_id' => $form_id, 'is_active' => $is_active, 'meta' => $meta ), array( '%s', '%d', '%d', '%s' ) );
 
@@ -905,6 +933,17 @@ abstract class GFFeedAddOn extends GFAddOn {
 
 	public function delete_feed( $id ) {
 		global $wpdb;
+
+		/**
+		 * Allows custom actions to be performed just before a feed is deleted from the database.
+		 *
+		 * @since 2.4.21
+		 *
+		 * @param int         $id   The ID of the feed being deleted.
+		 * @param GFFeedAddOn $this The current instance of the add-on for which the feed is being deleted.
+		 */
+		do_action( 'gform_pre_delete_feed', $id, $this );
+		do_action( "gform_{$this->get_short_slug()}_pre_delete_feed", $id, $this );
 
 		$wpdb->delete( "{$wpdb->prefix}gf_addon_feed", array( 'id' => $id ), array( '%d' ) );
 	}
@@ -975,6 +1014,74 @@ abstract class GFFeedAddOn extends GFAddOn {
 		// Create the new feed.
 		return $this->insert_feed( $new_form_id, $original_feed['is_active'], $meta );
 
+	}
+
+	/**
+	 * Checks if Addon Feed table exists.
+	 *
+	 * @since 2.4.23
+	 *
+	 * @return bool If Addon Feed table exists.
+	 */
+	private function addon_feed_table_exists() {
+		global $wpdb;
+		return $this->table_exists( $wpdb->prefix . 'gf_addon_feed' );
+	}
+
+	/**
+	 * Get the Table does not exist error message.
+	 *
+	 * @since 2.4.23
+	 *
+	 * @param string $table The missing table name.
+	 */
+	private function get_table_not_exists_error( $table ) {
+		$status_page_url = admin_url( 'admin.php?page=gf_system_status' );
+
+		return sprintf(
+			// translators: %1$s represents the missing table, %2$s is the opening link tag, %3$s is the closing link tag.
+			esc_html__( 'The table `%1$s` does not exist. Please visit the %2$sForms > System Status%3$s page and click the "Re-run database upgrade" link (under the Database section) to create the missing table.', 'gravityforms' ),
+			esc_html( $table ),
+			'<a href="' . esc_attr( $status_page_url ) . '" target="_blank" rel="noopener">',
+			'</a>'
+		);
+	}
+
+	/**
+	 * Output a Table does not exist error message.
+	 *
+	 * @since 2.4.23
+	 *
+	 * @param string $table The missing table name.
+	 */
+	private function show_table_not_exists_error( $table ) {
+		// Prevent the error from being displayed more than once.
+		if ( ! empty( $this->_table_error_rendered[ $table ] ) ) {
+			return;
+		}
+
+		$error   = $this->get_table_not_exists_error( $table );
+		$classes = $this->is_gravityforms_supported( '2.5-beta' ) ? 'gf-notice notice-error' : 'notice notice-error';
+
+		$notice = sprintf(
+			'<div class="%s"><p>%s</p></div>',
+			esc_attr( $classes ),
+			wp_kses_post( $error )
+		);
+
+		$this->_table_error_rendered[ $table ] = true;
+
+		if ( ! did_action( 'admin_notices' ) ) {
+			add_action(
+				'admin_notices',
+				function() use ( $notice ) {
+					echo $notice;
+				}
+			);
+			return;
+		}
+
+		echo $notice;
 	}
 
 	/**
@@ -1131,7 +1238,7 @@ abstract class GFFeedAddOn extends GFAddOn {
 		echo $title;
 
 		$feed = $this->get_feed( $feed_id );
-		$this->set_settings( $feed['meta'] );
+		$this->set_settings( rgar( $feed, 'meta' ) );
 
 		GFCommon::display_admin_message();
 
@@ -1249,9 +1356,9 @@ abstract class GFFeedAddOn extends GFAddOn {
 			return $feed_id;
 		}
 
-		// store a copy of the previous settings for cases where action would only happen if value has changed
+		// store a copy of the previous settings for cases where action would only happen if value has changed.
 		$feed = $this->get_feed( $feed_id );
-		$this->set_previous_settings( $feed['meta'] );
+		$this->set_previous_settings( rgar( $feed, 'meta' ) );
 
 		$settings = $this->get_posted_settings();
 		$sections = $this->get_feed_settings_fields();
@@ -1297,6 +1404,11 @@ abstract class GFFeedAddOn extends GFAddOn {
 	}
 
 	public function get_save_error_message( $sections ) {
+		if ( ! $this->addon_feed_table_exists() ) {
+			global $wpdb;
+			return $this->get_table_not_exists_error( $wpdb->prefix . 'gf_addon_feed' );
+		}
+
 		if ( ! $this->is_detail_page() )
 			return parent::get_save_error_message( $sections );
 
@@ -1778,6 +1890,17 @@ abstract class GFFeedAddOn extends GFAddOn {
     }
 
 	//--------------- Notes ------------------
+
+	/**
+	 * Writes to the add-on log and adds an entry note when a feed processing error occurs.
+	 *
+	 * @since 1.9.12
+	 *
+	 * @param string $error_message The error message.
+	 * @param array  $feed          The feed which was being processed when the error occurred.
+	 * @param array  $entry         The entry which was being processed when the error occurred.
+	 * @param array  $form          The form which was being processed when the error occurred.
+	 */
 	public function add_feed_error( $error_message, $feed, $entry, $form ) {
 
 		/* Log debug error before we prepend the error name. */
@@ -1786,17 +1909,27 @@ abstract class GFFeedAddOn extends GFAddOn {
 		$this->log_error( $method . '(): ' . $error_message );
 
 		/* Prepend feed name to the error message. */
-		$feed_name     = rgars( $feed, 'meta/feed_name' ) ? rgars( $feed, 'meta/feed_name' ) : rgars( $feed, 'meta/feedName' );
-		$error_message = $feed_name . ': ' . $error_message;
+		$feed_name          = rgars( $feed, 'meta/feed_name' ) ? rgars( $feed, 'meta/feed_name' ) : rgars( $feed, 'meta/feedName' );
+		$note_error_message = $feed_name . ': ' . $error_message;
 
 		/* Add error note to the entry. */
-		$this->add_note( $entry['id'], $error_message, 'error' );
+		$this->add_note( $entry['id'], $note_error_message, 'error' );
 
 		/* Get Add-On slug */
 		$slug = str_replace( 'gravityforms', '', $this->_slug );
 
-		/* Process any error actions. */
-		gf_do_action( array( "gform_{$slug}_error", $form['id'] ), $feed, $entry, $form );
+		/**
+		 * Process any error actions.
+		 *
+		 * @since 1.9.12
+		 * @since 2.4.15 Added $error_message as the fourth param.
+		 *
+		 * @param array  $feed          The feed which was being processed when the error occurred.
+		 * @param array  $entry         The entry which was being processed when the error occurred.
+		 * @param array  $feed          The form which was being processed when the error occurred.
+		 * @param string $error_message The error message.
+		 */
+		gf_do_action( array( "gform_{$slug}_error", $form['id'] ), $feed, $entry, $form, $error_message );
 
 	}
 
@@ -1941,11 +2074,16 @@ abstract class GFFeedAddOn extends GFAddOn {
 	 *
 	 * @since 2.4
 	 *
-	 * @param array $form The current Form Object
+	 * @param array $form The current Form Object.
 	 *
 	 * @return bool Returns true if one ore more feeds were registered, false if no feeds were registered
 	 */
 	public function register_frontend_feeds( $form ) {
+
+		// Don't register frontend feeds if $form ID is empty.
+		if ( empty( $form['id'] ) ) {
+			return false;
+		}
 
 		if ( ! isset( self::$_frontend_feeds[ $form['id'] ] ) ) {
 			self::$_frontend_feeds[ $form['id'] ] = array();
@@ -2065,7 +2203,9 @@ class GFAddOnFeedsTable extends WP_List_Table {
 	private $_no_items_callback = array();
 	private $_message_callback = array();
 
-	function __construct( $feeds, $slug, $columns = array(), $bulk_actions, $action_links, $column_value_callback, $no_items_callback, $message_callback, $addon_class ) {
+	function __construct( $feeds, $slug, $columns, $bulk_actions, $action_links, $column_value_callback, $no_items_callback, $message_callback, $addon_class ) {
+		$columns = ( is_array( $columns ) ) ? $columns : array();
+
 		$this->_bulk_actions          = $bulk_actions;
 		$this->_feeds                 = $feeds;
 		$this->_slug                  = $slug;

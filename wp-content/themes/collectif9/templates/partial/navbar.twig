@@ -18,35 +18,24 @@
                 <!-- CREATE MEGA MENU IF MENU ITEM HAS CHILDREN -->
                 {% for item in nav_menu.get_items %}
                 {% if item.children %}
-                <li class="nav-item {% if item.current %}active {% endif %}dropdown">
-                    <a class="nav-link {{ item.class }}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class="nav-item dropdown">
+                    <a class="nav-link {{ item.class }} {% if item.current %}active {% endif %}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="">{{ item.title }}</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <div class="container">
-                            <div class="row">
-                                {% for inner_item in item.children %}
-                                {% if inner_item.children %}
-                                <div class="col-sm-4 col-2-5">
-                                    <a href="{{ inner_item.link }}"><p class="parent subtitle">{{ inner_item.title }}</p></a>
-                                    {% for child in inner_item.children %}
-                                    <p class="child"><a href="{{ child.link }}">{{ child.title }}</a></p>
-                                    {% endfor %}
-                                </div>
-                                {% else %}
-                                <div class="col-12 no-child">
-                                    <a href="{{ inner_item.link }}" class="">{{ inner_item.title }}</a>
-                                </div>
-                                {% endif %}
-                                {% endfor %}
-                            </div>
-                        </div>
+                        <ul>
+                            {% for inner_item in item.children %}
+                            <li class="dropdown-item">
+                                <a class="dropdown-link {{ inner_item.class }}{% if inner_item.current %} active{% endif %}" href="{{ inner_item.link }}" class="">{{ inner_item.title }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 </li>
                 {% else %}
                 <!-- CREATE NORMAL MENU LINK IF ITEM DOESN'T HAVE CHILDREN -->
-                <li class="nav-item {% if item.current %}active{% endif %}">
-                    <a class="nav-link {{ item.class }}" href="{{ item.link }}">
+                <li class="nav-item">
+                    <a class="nav-link {{ item.class }} {% if item.current %}active{% endif %}" href="{{ item.link }}">
                         <span class="">{{ item.title }}</span>
                     </a>
                 </li>

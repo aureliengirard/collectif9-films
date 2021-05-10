@@ -176,6 +176,7 @@
         transform: translateZ(0);
         transition-duration: .15s;
         transition-timing-function: ease-in-out;
+        background-color: rgba(17,11,13,0.75);
     }
 
     .btn__wrapper{
@@ -183,8 +184,8 @@
     }
 
     .btn{
-        margin-top: 20px;
-        margin-bottom: 20px;
+        margin-top: 15px;
+        margin-bottom: 15px;
         text-align: center;
         line-height: 1;
         padding: $spacing*.25 $spacing*.75;

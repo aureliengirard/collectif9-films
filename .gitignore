@@ -52,6 +52,10 @@ wp-content/plugins/**
 !wp-content/plugins/wpml-media-translation/
 !wp-content/plugins/wpml-media-translation/**
 
+# WPML String Translation
+!wp-content/plugins/wpml-string-translation/
+!wp-content/plugins/wpml-string-translation/**
+
 # SVG Support
 !wp-content/plugins/svg-support/
 !wp-content/plugins/svg-support/**

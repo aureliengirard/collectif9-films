@@ -9,22 +9,24 @@
 		<div  id="stick_banner"></div>
 	{% endif %}
 
-	<section class="film-info content__centered">
+	<section class="film-info">
 		<div class="container">
-			<div class="row aos-init" data-aos="fade-up">
-				<div class="col-lg-6 bg--bleu-clair has_paddings credits">
+			<div class="row">
+				<div class="col-lg-6 bg--bleu-clair has_paddings credits aos-init" data-aos="fade-up">
 					{% set credits = page.meta('credits') %}
-					{% for credit in credits %}
+					<div class="credits__wrapper">
+						{% for credit in credits %}
 						<div class="credit">
 							<div class="credit--title"><h4>{{credit.label}}</h4></div>
 							<div class="credit--content">
 								{% set names = credit.name|split(',') %}
-		                        {% for name in names %}{{name}}{% if not loop.last %}</br>{% endif %}{% endfor %}
+								{% for name in names %}{{name}}{% if not loop.last %}</br>{% endif %}{% endfor %}
 							</div>
 						</div>
-					{% endfor %}
+						{% endfor %}
+					</div>
 				</div>
-				<div class="col-lg-6 has_paddings text--center description">
+				<div class="col-lg-6 has_paddings text--center description aos-init" data-aos="fade-up">
 					<h4>{% if page.lieu %}{{page.lieu}} | {% endif %}{% if page.annee %}{{page.annee}} | {% endif %}{% if page.duree %}{{page.duree}}{% endif %}</h4>
 					<p class="description--short">{{page.description_courte}}</p>
 					<span class="divider"></span>
@@ -38,7 +40,7 @@
 	{% if quotes %}
 		<section class="quote has_margins">
 			<div class="container">
-				<div class="row film-concert__boxes aos-init" data-aos="fade-up">
+				<div class="row aos-init" data-aos="fade-up">
 					{% if page.critique_title %}
 					<div class="col-12 section__title text--center">
 						<h2>{{page.critique_title}}</h2>
@@ -64,7 +66,7 @@
 
 	{%- set images_gallerie = page.meta('gallerie') -%}
 	{% if images_gallerie %}
-		<section class="gallery bg--bleu-clair has_paddings aos-init" data-aos="fade-up">
+		<section class="gallery{% if quotes %} bg--bleu-clair{% endif %} has_paddings aos-init" data-aos="fade-up">
 			<div class="container">
 				<div class="row">
 					{% if page.gallerie_title %}
@@ -94,9 +96,9 @@
 	{% if broadcasts or collaborateurs %}
 		<section  style="overflow:hidden;">
 			<div class="container">
-				<div class="row aos-init" data-aos="fade-up">
+				<div class="row">
 					{% if broadcasts %}
-						<div class="{% if collaborateurs %}col-lg-5{% else %}col-lg-12{% endif %} has_paddings broadcast__wrapper">
+						<div class="{% if collaborateurs %}col-md-6 col-lg-5{% else %}col-lg-12{% endif %} has_paddings broadcast__wrapper aos-init" data-aos="fade-up">
 							<h2 class="section__title">{{page.diffusions_title}}</h2>
 
 
@@ -135,7 +137,7 @@
 						</div>
 					{% endif %}
 					{% if collaborateurs %}
-					<div class="{% if broadcasts %}col-lg-7{% else %}col-lg-12{% endif %} collaborators has_paddings bg--or color--blanc">
+					<div class="{% if broadcasts %}col-md-6 col-lg-7{% else %}col-lg-12{% endif %} collaborators has_paddings bg--or color--blanc aos-init" data-aos="fade-up">
 						<h2 class="section__title">{{page.collaborateurs_title}}</h2>
 						{% for collaborateur in collaborateurs %}
 						<div class="collaborator__wrapper">
@@ -161,11 +163,12 @@
 
 	<section style="overflow:hidden;">
 		<div class="container">
-			<div class="row aos-init" data-aos="fade-up">
-				<div class="col-lg-5 has_paddings you-may-like bg--bleu-clair">
+			<div class="row">
+				<div class="col-md-6 col-lg-5 has_paddings you-may-like bg--bleu-clair aos-init" data-aos="fade-up">
 					<h3>{{__('Vous aimeriez aussi...', 'film-concerts')}}</h3>
 					<div class="you-may-like__wrapper you-may-like__slider">
 						{% for concert in film_concerts %}
+							{% if concert.title != page.title %}
 								{% set image_url = Image(concert.film_cross_selling).src %}
 								<a href="{{concert.link}}">
 									<img class="lazyload"
@@ -173,13 +176,12 @@
 									data-sizes="auto"
 									alt="{{concert.title}}">
 								</a>
-								{% if concert.title != page.title %}
 							{% endif %}
 
 						{% endfor %}
 					</div>
 				</div>
-				<div class="col-lg-7 has_paddings press-contact">
+				<div class="col-md-6 col-lg-7 has_paddings press-contact aos-init" data-aos="fade-up">
 					<h3 class="section__title">{{page.presse_title}}</h3>
 					<a href="{{page.kit_de_presse.url}}">{{__('Téléchargez le kit de presse', 'film-concerts')}}</a>
 					{% if page.email_presse %}
@@ -213,4 +215,49 @@
 		</section>
 	{%- endif -%}
 </article>
+{% endblock %}
+
+{% block scripts %}
+
+<script type="text/javascript">
+
+// STICKY BANNER ON MOVIE PAGES
+/*
+jQuery(document).ready(function($) {
+	function sticktothebottom(){
+		var panel = $('#watch_banner');
+
+		if (panel) {
+			var h = window.innerHeight;
+			var window_top = $(window).scrollTop();
+			var top = $('#stick_banner').offset().top;
+			var panelh = $('#watch_banner').height();
+			var bottom = $('#unstick_banner').offset().top;
+			$('#unstick_banner').height(panel.outerHeight());
+
+			if (window_top + h > top) {
+				if (window_top + h < bottom + panelh){
+					panel.addClass('stick');
+				}
+			}
+
+			if (window_top + h < top  ) {
+				panel.removeClass('stick');
+				panel.addClass('transition');
+			}
+
+			if (window_top + h > bottom + panelh) {
+				$('#unstick_banner').height(0);
+				if (panel.hasClass('stick')) {
+					panel.removeClass('transition stick');
+				}
+			}
+		}
+	}
+
+	$(window).scroll(sticktothebottom);
+	sticktothebottom();
+});
+*/
+</script>
 {% endblock %}

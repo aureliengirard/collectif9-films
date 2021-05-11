@@ -26,8 +26,8 @@
         @include align-items(flex-end);
         max-width: var(--WidthNavArea);
 
-        padding-top: $spacing;
-        padding-bottom: $spacing;
+        padding-top: $spacing * 1.5;
+        padding-bottom: $spacing * 1.5;
         margin-bottom: 0;
 
         @include media-breakpoint-up(md){
@@ -69,17 +69,34 @@
 
     // Hero Variations
     &__fullheight{
-        height: 100vh;
+        height: 80vh;
+        min-height: 80vh;
+
+        @include media-breakpoint-up(lg){
+            height: 100vh;
+        }
 
         .container{
-            height: 100vh;
+            height: 80vh;
+            min-height: 80vh;
+
+            @include media-breakpoint-up(lg){
+                height: 100vh;
+            }
+        }
+    }
+
+    .movie__image{
+        width: 100%;
+
+        @include media-breakpoint-down(lg){
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
         }
     }
 
     &__home{
-        .movie__image{
-            width: 100%;
-        }
 
         #icon-play{
             width: 60px;
@@ -89,6 +106,11 @@
 
     &__film{
         margin-bottom: 0;
+        height: 100vh;
+
+        .container{
+            height: 100vh;
+        }
 
         h1{
             span{
@@ -103,14 +125,27 @@
             margin-bottom: $spacing;
 
             svg{
-                max-width: 8.5vw;
+                max-width: 45vw;
+
+                @include media-breakpoint-down(md){
+                    width: 100px;
+                }
+
+                @include media-breakpoint-up(xl){
+                    max-width: 8.5vw;
+                }
                 height: auto;
             }
         }
 
         .credit__musique{
             align-self: flex-start;
-            
+
+            @include media-breakpoint-down(md){
+                text-align: center;
+                margin-top: $spacing * .5;
+            }
+
             p {
                 margin: 0;
             }
@@ -119,7 +154,11 @@
 
     .slick{
         &-arrow{
-            top: 100% * (2/3);
+            top: calc(100% - #{$spacing});
+
+            @include media-breakpoint-up(lg){
+                top: 100% * (2/3);
+            }
 
             svg path{
                 fill: var(--couleurOr);
@@ -127,14 +166,23 @@
         }
 
         &--prev{
-            right: $spacing * 2.5;
+            right: $spacing * 1.5;
+
+            @include media-breakpoint-up(lg){
+                right: $spacing * 2.5;
+            }
             @media screen and (min-width: 1720px){
                 right: calc(calc((100vw / 2) - calc(var(--WidthNavArea)/2)) + #{$spacing * 2.5});
             }
         }
 
         &--next{
-            right: $spacing;
+            right: $spacing * 0.5;
+
+
+            @include media-breakpoint-up(lg){
+                right: $spacing;
+            }
 
             @media screen and (min-width: 1720px){
                 right: calc(calc((100vw / 2) - calc(var(--WidthNavArea)/2)) + #{$spacing});

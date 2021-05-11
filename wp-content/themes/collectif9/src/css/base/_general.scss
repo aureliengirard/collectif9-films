@@ -33,6 +33,32 @@ body {
   font-size: var(--baseFontSize);
   font-weight: $font-weight-normal;
   line-height: var(--baseLineHeight);
+
+  @media screen and (min-width: 1921px){
+      position: relative;
+      max-width: 1920px;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      overflow-x: hidden;
+
+      &:before,
+      &:after{
+          content: " ";
+          height: 100%;
+          position: absolute;
+          top: 0;
+          width: 15px;
+      }
+
+      &:before {
+          box-shadow: -15px 0 15px -15px inset rgba(0,0,0,0.2);
+          left: -15px;
+      }
+      &:after {
+          box-shadow: 15px 0 15px -15px inset  rgba(0,0,0,0.2);
+          right: -15px;
+      }
+  }
 }
 
 img {

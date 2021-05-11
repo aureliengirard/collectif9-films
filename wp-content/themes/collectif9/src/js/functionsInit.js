@@ -50,6 +50,24 @@ const functionsInit = function() {
         fixedContentPos: false
     });
 
+    $('.gallery__wrapper').magnificPopup({
+        delegate: 'a',
+        type: 'image',
+        tLoading: 'Loading image #%curr%...',
+        mainClass: 'mfp-img-mobile',
+        gallery: {
+            enabled: true,
+            navigateByImgClick: true,
+            preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+        },
+        image: {
+            tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+            titleSrc: function(item) {
+                return item.el.attr('title');
+            }
+        }
+    });
+
     // STICKY BANNER ON MOVIE PAGES
     function sticktothebottom() {
         var panel = $('#watch_banner');
@@ -62,10 +80,10 @@ const functionsInit = function() {
             var bottom = $('#unstick_banner').offset().top;
             $('#unstick_banner').height(panel.outerHeight());
 
+            if (window_top + h < bottom + panelh){
+            }
             if (window_top + h > top) {
-                if (window_top + h < bottom + panelh){
-                    panel.addClass('stick');
-                }
+                panel.addClass('stick');
             }
 
             if (window_top + h < top  ) {
@@ -76,7 +94,8 @@ const functionsInit = function() {
             if (window_top + h > bottom + panelh) {
                 $('#unstick_banner').height(0);
                 if (panel.hasClass('stick')) {
-                    panel.removeClass('transition stick');
+                    panel.removeClass('stick');
+                    panel.removeClass('transition');
                 }
             }
         }
@@ -86,24 +105,6 @@ const functionsInit = function() {
         $(window).scroll(sticktothebottom);
         sticktothebottom();
     });
-
-    $('.gallery__wrapper').magnificPopup({
-    delegate: 'a',
-    type: 'image',
-    tLoading: 'Loading image #%curr%...',
-    mainClass: 'mfp-img-mobile',
-    gallery: {
-        enabled: true,
-        navigateByImgClick: true,
-        preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-    },
-    image: {
-        tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
-        titleSrc: function(item) {
-            return item.el.attr('title');
-        }
-    }
-});
 
 };
 

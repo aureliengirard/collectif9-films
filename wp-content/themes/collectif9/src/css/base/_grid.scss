@@ -7,8 +7,10 @@
 }
 .container{
     max-width: var(--WidthContainerArea);
+    padding-left: $spacing * 0.625;
+    padding-right: $spacing * 0.625;
 
-    @include media-breakpoint-between(md,xxl){
+    @include media-breakpoint-between(lg,xxl){
         padding-left: $spacing;
         padding-right: $spacing;
     }
@@ -18,35 +20,20 @@
     }
 }
 
-.content-wrapper{
-    section{
-        /*
-        margin-bottom: $spacing;
-
-        @include media-breakpoint-only(lg){
-            margin-bottom: $spacing * 1.5;
-        }
-
-        @include media-breakpoint-up(xl){
-            margin-bottom: $spacing * 2;
-        }
-        */
-    }
-    .row{
-
-        @include media-breakpoint-up(lg){
-            //margin-bottom: $spacing * 1.5;
-        }
-    }
-}
-
 .row{
+    margin-left: -$spacing * 0.625;
+    margin-right: -$spacing * 0.625;
 
     @include media-breakpoint-up(lg){
-        margin-left: -$spacing * .6;
-        margin-right: -$spacing * .6;
+        margin-left: -$spacing;
+        margin-right: -$spacing;
 
-        [class^="col-"]{
+    }
+    [class^="col-"]{
+        padding-left: $spacing * 0.625;
+        padding-right: $spacing * 0.625;
+
+        @include media-breakpoint-up(lg){
             padding-left: $spacing * .6;
             padding-right: $spacing * .6;
         }
@@ -62,6 +49,12 @@
 
     @include media-breakpoint-up(xl){
         margin-bottom: $spacing * 2;
+    }
+}
+
+.sm_has__mb{
+    @include media-breakpoint-down(md){
+        margin-bottom: $spacing;
     }
 }
 

@@ -13,13 +13,19 @@ footer{
 
 .footer{
 
-    &__newsletter{}
+    &__newsletter{
+        @include media-breakpoint-down(md){
+            margin: 0;
+        }
+    }
     &__partners{
         background-color: var(--couleurBleuClair);
 
         .partners__wrapper{
             display: inherit;
             @include justify-content(center);
+            flex-wrap: wrap;
+            -webkit-flex-wrap: wrap;
             width: 100%;
         }
 
@@ -27,6 +33,11 @@ footer{
             height: 75px;
             width: auto;
             padding: 0 $spacing / 2;
+
+            @include media-breakpoint-down(lg){
+                height: 65px;
+                margin: $spacing / 4 0;
+            }
 
             @include media-breakpoint-up(xl){
                 padding: 0 $spacing;
@@ -38,6 +49,17 @@ footer{
         color: var(--couleurBlanc);
         font-size: 1rem;
 
+        @include media-breakpoint-down(md){
+            text-align: center;
+        }
+
+        [class^="col-"]:nth-child(n+2) {
+
+            @include media-breakpoint-down(md){
+                margin-bottom: 20px;
+            }
+        }
+
         .row{
             @include align-items(center);
         }
@@ -47,8 +69,12 @@ footer{
     &__social{
         $link-size: 12px;
         @include flexbox;
+        @include justify-content(center);
         @include align-items(center);
-        @include justify-content(flex-end);
+
+        @include media-breakpoint-up(lg){
+            @include justify-content(flex-end);
+        }
 
         a{
             height: $link-size * 3;
@@ -75,6 +101,12 @@ footer{
             height: $link-size * 3;
             //filter: invert(84%) sepia(6%) saturate(57%) hue-rotate(169deg) brightness(81%) contrast(82%);
             transition: $transition-base;
+        }
+    }
+
+    &__copyright{
+        @include media-breakpoint-down(md){
+            order: -3;
         }
     }
 }

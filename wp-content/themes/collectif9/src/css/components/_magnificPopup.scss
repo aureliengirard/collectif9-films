@@ -26,3 +26,10 @@
 .mfp-fade.mfp-wrap.mfp-removing .mfp-content {
 	opacity: 0;
 }
+
+.mfp-iframe-holder .mfp-content{
+
+	@include media-breakpoint-up(xl){
+		max-width: 75vw
+	}
+}

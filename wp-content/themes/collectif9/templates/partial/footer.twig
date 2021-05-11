@@ -41,13 +41,13 @@
                 </div>
             </div>
             <div class="col-lg-4 footer__social">
-                {% set networks = options.social_network %}
-                {% for network in networks %}
-                {% set icon = Image(network.sn_icon).src %}
+                {%- set networks = options.social_network -%}
+                {%- for network in networks -%}
+                {%- set icon = Image(network.sn_icon).src -%}
                 <a class="social--link" href="{{ network.sn_link.url }}" title="{{ network.sn_link.title }}" target="{{ network.sn_link.target }}" rel="nofollow">
                     <img class="lazyload" data-src="{{ icon }}" alt="{{ network.sn_link.title }}">
                 </a>
-                {% endfor %}
+                {%- endfor -%}
                 </div>
             </div>
         </div>

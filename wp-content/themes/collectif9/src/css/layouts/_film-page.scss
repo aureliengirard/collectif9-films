@@ -1,14 +1,24 @@
 .credits{
     position: relative;
-    &:before{
-        content: " ";
-        position: absolute;
-        width: 50%;
-        height: 100%;
-        background-color: inherit;
-        top: 0;
-        left: -49%;
-        z-index: -1;
+    display: inherit;
+
+    @include media-breakpoint-up(lg){
+
+        &:before{
+            content: " ";
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            background-color: inherit;
+            top: 0;
+            left: -49%;
+            z-index: -1;
+        }
+    }
+
+    &__wrapper{
+        margin: 0 0 auto 0;
+        width: 100%;
     }
 }
 
@@ -16,6 +26,14 @@
     @include flexbox;
     @include flex-flow(row wrap);
     margin: 1.5em 0;
+
+    &:nth-child(1){
+        margin-top: 0;
+    }
+
+    &:nth-last-child(1){
+        margin-bottom: 0;
+    }
 
     div{
         flex: 1 1 47.5%;
@@ -30,14 +48,30 @@
     }
 }
 
+.description{
+    @include media-breakpoint-down(md){
+        order: -1;
+    }
+
+    p:nth-last-child(1){
+        margin-bottom: 0;
+    }
+}
+
 .gallery{
+    &__wrapper{
+        @include flexbox;
+        @include flex-flow(row wrap);
+    }
+
     &__item{
-        width: 100%;
+        flex: 50%;
         max-width: 50%;
         display: inline-block;
         padding: $spacing * .25;
 
         @include media-breakpoint-up(lg){
+            flex: 33%;
             max-width: 33%;
         }
     }
@@ -48,9 +82,18 @@
 }
 
 .quote__slider{
+    @include media-breakpoint-between(md,lg){
+        padding-left: $spacing;
+        padding-right: $spacing;
+    }
 
     .quote__wrapper{
         width: 100%;
+
+        @include media-breakpoint-down(lg){
+            padding-left: $spacing * .25;
+            padding-right: $spacing * .25;
+        }
     }
 
     .slick{
@@ -67,7 +110,15 @@
         &--prev{
             left: 0;
 
-            @include media-breakpoint-up(xl){
+            @include media-breakpoint-up(md){
+                left: $spacing * .25;
+            }
+
+            @include media-breakpoint-up(xxl){
+                left: -$spacing * .75;
+            }
+
+            @include media-breakpoint-up(xxxl){
                 left: -$spacing * 1.5;
             }
         }
@@ -75,7 +126,15 @@
         &--next{
             right: 0;
 
-            @include media-breakpoint-up(xl){
+            @include media-breakpoint-up(md){
+                right: $spacing * .25;
+            }
+
+            @include media-breakpoint-up(xxl){
+                right: -$spacing * .75;
+            }
+
+            @include media-breakpoint-up(xxxl){
                 right: -$spacing * 1.5;
             }
         }
@@ -85,15 +144,17 @@
 .collaborators{
     position: relative;
 
-    &:after{
-        content: " ";
-        position: absolute;
-        width: 50%;
-        height: 100%;
-        background-color: inherit;
-        top: 0;
-        right: -49%;
-        z-index: -1;
+    @include media-breakpoint-up(lg){
+        &:after{
+            content: " ";
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            background-color: inherit;
+            top: 0;
+            right: -49%;
+            z-index: -1;
+        }
     }
 
     @include media-breakpoint-up(lg){
@@ -108,19 +169,26 @@
 .you-may-like{
     position: relative;
 
-    &:before{
-        content: " ";
-        position: absolute;
-        width: 50%;
-        height: 100%;
-        background-color: inherit;
-        top: 0;
-        left: -49%;
-        z-index: -1;
+    @include media-breakpoint-up(lg){
+
+        &:before{
+            content: " ";
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            background-color: inherit;
+            top: 0;
+            left: -49%;
+            z-index: -1;
+        }
     }
 
     &__wrapper{
-        max-width: 350px
+        max-width: 350px;
+
+        @include media-breakpoint-down(sm){
+            margin: 0 auto;
+        }
     }
 
     img{
@@ -171,7 +239,7 @@
     }
 
     &__info{
-        flex: auto;
+        flex: 1;
         max-width: 400px;
         margin-left: $spacing / 2;
 
@@ -182,6 +250,10 @@
 }
 
 .press-contact{
+    @include media-breakpoint-down(sm){
+        order: -1;
+    }
+
     h3{
         &:nth-of-type(2n){
             margin-top: 1.5em;
@@ -190,6 +262,7 @@
 
     h4{
         margin-top: .75em;
+        font-size: 1em;
     }
 
     @include media-breakpoint-up(lg){
@@ -203,6 +276,13 @@
 
 #watch_banner {
     opacity: 1;
+    max-width: 100vw;
+    width: 100%;
+
+    @include media-breakpoint-up(xxxl){
+        max-width: 1920px;
+    }
+
     &.transition {
         opacity: 0;
         transition-property: opacity,transform;
@@ -215,8 +295,6 @@
 
     &.stick {
         position: fixed;
-        left: 0;
-        right:0;
         bottom: 0px;
         z-index: 999;
         opacity: 1;

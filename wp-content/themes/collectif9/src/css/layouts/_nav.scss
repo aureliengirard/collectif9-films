@@ -359,6 +359,14 @@ nav{
                         border-style: solid;
                     }
                 }
+
+                .menu-item-has-children span{
+                    @include media-breakpoint-down(md){
+                        &:after {
+                            transform: rotate(90deg);
+                        }
+                    }
+                }
             }
         }
 
@@ -374,6 +382,18 @@ nav{
                     border-width: 3px 0 0 0;
                     border-color: var(--couleurNoir);
                     border-style: solid;
+                }
+            }
+
+        }
+        
+        &.menu-item-has-children span{
+            @include media-breakpoint-down(md){
+                &:after {
+                    content: "\25B6";
+                    margin-left: 10px;
+                    display: inline-block;
+                    transition: rotate .15s ease;
                 }
             }
         }

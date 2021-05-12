@@ -71,6 +71,7 @@
     &__fullheight{
         height: 80vh;
         min-height: 80vh;
+        max-height: 1080px;
 
         @include media-breakpoint-up(lg){
             height: 100vh;
@@ -79,6 +80,7 @@
         .container{
             height: 80vh;
             min-height: 80vh;
+            max-height: 1080px;
 
             @include media-breakpoint-up(lg){
                 height: 100vh;
@@ -148,6 +150,32 @@
 
             p {
                 margin: 0;
+            }
+        }
+    }
+
+    &__basic{
+        height: 56.25vw;
+        min-height: 56.25vw;
+        max-height: 1080px;
+
+        .container{
+            height: 56.25vw;
+            min-height: 56.25vw;
+        }
+
+        .row{
+            padding-top: $spacing;
+            padding-bottom: $spacing;
+
+            @include media-breakpoint-up(lg){
+                padding-top: $spacing * 2;
+                padding-bottom: $spacing * 2;
+            }
+
+            @include media-breakpoint-up(xxl){
+                padding-top: $spacing * 3;
+                padding-bottom: $spacing * 3;
             }
         }
     }

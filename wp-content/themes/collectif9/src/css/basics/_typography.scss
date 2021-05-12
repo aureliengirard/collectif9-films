@@ -11,6 +11,20 @@
     @include media-breakpoint-up(xxxl){
         font-size: 2.25em;
     }
+
+    &.lg{
+        @include media-breakpoint-up(md){
+            font-size: 2.25em;
+        }
+
+        @include media-breakpoint-up(xl){
+            font-size: 2.5em;
+        }
+
+        @include media-breakpoint-up(xxxl){
+            font-size: 2.75em;
+        }
+    }
 }
 
 %heading-h2 {
@@ -112,6 +126,13 @@
 
 .rte{
 
+    * + {
+
+        h2,h3{
+            margin-top: $spacing;
+        }
+    }
+
     h2{
         margin-bottom: $spacing * .75;
     }
@@ -121,7 +142,7 @@
     }
 
     h4{
-
+        margin-bottom:  $spacing * .25;
     }
 
     p{

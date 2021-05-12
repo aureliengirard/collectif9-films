@@ -106,6 +106,10 @@ const functionsInit = function() {
         sticktothebottom();
     });
 
+    $( ".navbar-toggler" ).click(function() {
+      $( "#nav" ).toggleClass( 'active_menu' );
+    });
+
 };
 
 export default functionsInit;

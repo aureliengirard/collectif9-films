@@ -1,18 +1,79 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	<article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
-		<section class="article-content">
+	<article class="post-type-{{page.post_type}}" id="post-{{page.ID}}">
+
+		{% include 'layouts/hero-basic.twig' %}
+
+		<section class="about has_margins">
 			<div class="container">
-				<div class="row section__header">
-					<div class="col-12 text-center">
-						<h1 class="article__title">{{post.title}}</h1>
-						<div class="article__-body">
-							{{post.content}}
-						</div>
+				<div class="row aos-init" data-aos="fade-up">
+					<div class="col-12 rte">
+						{{ page.meta('about_content') }}
 					</div>
 				</div>
 			</div>
 		</section>
+
+		{% set sections = page.meta('sections') %}
+		<section class="performances bg--bleu-clair has_paddings">
+			<div class="container">
+				<div class="row aos-init" data-aos="fade-up">
+					{% if page.perfo_title %}
+					<div class="col-12 section__title">
+						<h2>
+							{{ page.perfo_title }}
+						</h2>
+					</div>
+					{% endif %}
+				</div>
+				{% for section in sections %}
+				<div class="row performances__wrapper aos-init" data-aos="fade-up">
+					{%- if section.title -%}
+					<div class="col-12 section__title">
+						<h3>
+							{{- section.title -}}
+						</h3>
+					</div>
+					{%- endif -%}
+
+					{%- set blocks = section.video_blocks -%}
+					{%- for item in blocks -%}
+
+						<div class="col-md-6">
+							<div class="perfo__card">
+								{% set video = item.video %}
+								{% if video -%}
+									<div class="embed-responsive embed-responsive-16by9 lazyload" style="background-image:url('/wp-content/uploads/TV-frame.png');">
+								  		<iframe class="embed-responsive-item" src="{{video}}"></iframe>
+									</div>
+								{%- endif %}
+								<h4>{{item.title}}</h4>
+								<p>{{item.description}}</p>
+							</div>
+						</div>
+					{%- endfor -%}
+				</div>
+				{% endfor %}
+			</div>
+		</section>
+
+		<section style="overflow:hidden;">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 follow aos-init has_paddings" data-aos="fade-up">
+						<div class="rte">
+							<h3 class="section__title">{{page.follow_title}}</h3>
+							{{ page.meta('follow_content') }}
+						</div>
+					</div>
+					<div class="col-md-6 contact aos-init has_paddings bg--or color--blanc" data-aos="fade-up">
+						<h3 class="section__title">{{page.contact_title}}</h3>
+						{{ page.meta('contact_content') }}
+					</div>
+				</div>
+			</div>
+		</section>
+
 	</article>
 {% endblock %}

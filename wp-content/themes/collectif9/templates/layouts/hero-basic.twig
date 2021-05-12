@@ -1,0 +1,26 @@
+<header class="hero hero__basic">
+    {% set id = page.slug|lower %}
+    {{- Image(page.movie_bg).src -}}
+    {% set color = page.film_color %}
+    {% set trailer = page.film_trailer_id %}
+    {% set bg_img = Image(page.page_bg).src -%}
+
+    {%- set title -%}
+        {%- if page.page_title -%}
+            {{- page.page_title -}}
+        {%- else -%}
+            {{- page.title -}}
+        {%- endif -%}
+    {%- endset -%}
+
+    <div id="{{ id }}" class="hero__{{ id }} hero__bg" style="background-image:url('{{ bg_img }}');">
+        <div class="container">
+            <div class="row aos-init" data-aos="zoom-in">
+                <div class="col-lg-12">
+                    <h1 class="lg">{{- title -}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+

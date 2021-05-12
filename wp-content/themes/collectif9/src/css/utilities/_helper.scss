@@ -57,6 +57,12 @@ $bg-style:
 
     .bg--#{$bg-name}{
         background-color: $color;
+
+        @if $bg-name == "or" {
+            a{
+                color: var(--couleurBlanc);
+            }
+        }
     }
 }
 

@@ -106,7 +106,7 @@ footer{
 
     &__copyright{
         @include media-breakpoint-down(md){
-            order: -3;
+            order: 3;
         }
     }
 }

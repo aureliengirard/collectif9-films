@@ -79,7 +79,7 @@
 						{%- set image_url = image.url -%}
 						{%- set gallery_item -%}
 						<img class="lazyload"
-						data-srcset="{{ image_url | resize(150,100) | relative }} 150w,{{ image_url | resize(300,200) | relative }} 500w,{{ image_url | resize(600,400) | relative }} 600w,{{ image_url|resize(750,500) | relative }} 750w,{{ image_url|resize(900,600) | relative }} 900w"
+						data-srcset="{{ image_url | resize(150,100) | relative }} 150w,{{ image_url | resize(300,200) | relative }} 300w,{{ image_url | resize(450,300) | relative }} 450w,{{ image_url | resize(600,400) | relative }} 600w,{{ image_url|resize(750,500) | relative }} 750w"
 						data-sizes="auto"
 						alt="{{ image.title }}">
 						{% endset %}
@@ -183,7 +183,8 @@
 				</div>
 				<div class="col-md-6 col-lg-7 has_paddings press-contact aos-init" data-aos="fade-up">
 					<h3 class="section__title">{{page.presse_title}}</h3>
-					<a href="{{page.kit_de_presse.url}}">{{__('Téléchargez le kit de presse', 'film-concerts')}}</a>
+					{% set kit_de_presse = TimberImage(page.kit_de_presse) %}
+					<a href="{{kit_de_presse.src }}">{{__('Téléchargez le kit de presse', 'film-concerts')}}</a>
 					{% if page.email_presse %}
 						<h4>{{__('Contact', 'film-concerts')}}</h4>
 						<a href="mailto:{{page.email_presse}}">{{page.email_presse}}</a>

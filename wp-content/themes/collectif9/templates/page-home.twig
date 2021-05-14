@@ -51,7 +51,7 @@
 							<div class="image__wrapper">
 								{% set image = Image(movie_block.image).src %}
 								<img class="lazyload movie__image"
-								data-srcset="{{ image | resize(400,240) | relative }} 400w,{{ image | resize(500,300) | relative }} 500w,{{ image | resize(600,360) | relative }} 600w,{{ image|resize(700,420) | relative }} 700w,{{ image|resize(850,510) | relative }} 850w"
+								data-srcset="{{ image | resize(400,240) | relative }} 400w,{{ image | resize(500,300) | relative }} 500w,{{ image | resize(610,366) | relative }} 610w,{{ image|resize(700,420) | relative }} 700w,{{ image|resize(850,510) | relative }} 850w"
 								data-sizes="auto"
 								alt="{{ movie_block.title }}">
 							</div>

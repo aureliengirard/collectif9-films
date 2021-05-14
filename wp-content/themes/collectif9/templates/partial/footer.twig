@@ -20,7 +20,6 @@
                 {% set logo = Image(partner.logo).src %}
                 <img class="lazyload movie__logo"
                 data-srcset="{{ logo | resize(50,0) | relative }} 50w,{{ logo | resize(100,0) | relative }} 100w,{{ logo | resize(200,0) | relative }} 200w,{{ logo | resize(300,0) | relative }} 300w,{{ logo|resize(400,0) | relative }} 400w,{{ logo|resize(500,0) | relative }} 500w"
-                height="75px"
                 alt="{{ slide.titre }}">
                 {% endfor %}
             </div>

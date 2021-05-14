@@ -155,13 +155,20 @@
     }
 
     &__basic{
-        height: 56.25vw;
-        min-height: 56.25vw;
+        @include media-breakpoint-down(md){
+            height: 56.25vw;
+            min-height: 56.25vw;
+        }
+        height: 100vh;
         max-height: 1080px;
 
         .container{
-            height: 56.25vw;
-            min-height: 56.25vw;
+            @include media-breakpoint-down(md){
+                height: 56.25vw;
+                min-height: 56.25vw;
+            }
+            height: 100vh;
+            max-height: 1080px;
         }
 
         .row{

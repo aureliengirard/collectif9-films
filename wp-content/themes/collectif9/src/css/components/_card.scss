@@ -34,7 +34,7 @@
         margin-left: auto;
         margin-right: auto;
 
-        @include media-breakpoint-down(lg){
+        @include media-breakpoint-down(md){
             color: var(--couleurNoir);
             border-color: var(--couleurNoir);
         }

@@ -70,8 +70,11 @@
     // Hero Variations
     &__fullheight{
         height: 80vh;
-        min-height: 80vh;
         max-height: 1080px;
+
+        @include media-breakpoint-down(xxxl){
+            min-height: 80vh;
+        }
 
         @include media-breakpoint-up(lg){
             height: 100vh;
@@ -79,8 +82,11 @@
 
         .container{
             height: 80vh;
-            min-height: 80vh;
             max-height: 1080px;
+
+            @include media-breakpoint-down(xxxl){
+                min-height: 80vh;
+            }
 
             @include media-breakpoint-up(lg){
                 height: 100vh;
